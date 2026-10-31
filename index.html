@@ -55,6 +55,39 @@ button.b:hover{background:var(--cyan);color:#000}
 .full{grid-column:1/-1}
 #nojs{border:1px solid var(--yel);color:var(--yel);padding:8px 12px;margin-bottom:14px;font-size:13px}
 .js #nojs{display:none}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:50;background:repeating-linear-gradient(0deg,rgba(255,255,255,.025) 0 1px,transparent 1px 3px)}
+body::after{content:"";position:fixed;left:0;right:0;height:120px;top:-120px;pointer-events:none;z-index:49;background:linear-gradient(transparent,rgba(79,227,255,.07),transparent);animation:scan 7s linear infinite}
+@keyframes scan{to{transform:translateY(calc(100vh + 240px))}}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}}
+@keyframes flick{0%,91%,100%{opacity:1}92%{opacity:.55}94%{opacity:1}96%{opacity:.7}}
+@keyframes sweep{to{background-position:200% 0}}
+@keyframes pul{50%{filter:brightness(1.4)}}
+@keyframes flk{50%{opacity:.5}}
+h1{text-shadow:0 0 8px var(--red),0 0 24px rgba(255,77,77,.55);animation:flick 6s infinite}
+.badge b{text-shadow:0 0 10px currentColor,0 0 22px currentColor}
+.p{animation:rise .6s both;transition:box-shadow .3s,border-color .3s;box-shadow:inset 0 0 22px rgba(255,77,77,.07)}
+.p:hover{border-color:var(--red);box-shadow:inset 0 0 28px rgba(255,77,77,.16),inset 3px 0 12px rgba(255,77,77,.4)}
+.p h2{text-shadow:0 0 8px rgba(255,77,77,.6)}
+.p h2::after{background:linear-gradient(90deg,var(--red),var(--cyan),var(--red),transparent) 0 0/200% 100%;animation:sweep 5s linear infinite}
+input:focus,textarea:focus{box-shadow:0 2px 10px -2px var(--yel)}
+button.b{transition:.2s}
+button.b:hover{box-shadow:0 0 14px var(--cyan)}
+button.b.on{background:var(--cyan);color:#000;box-shadow:0 0 12px var(--cyan)}
+button.b.r{color:var(--red);border-color:var(--red)}
+button.b.r:hover{background:var(--red);color:#000;box-shadow:0 0 14px var(--red)}
+.hum i{box-shadow:0 0 12px currentColor;animation:pul 2.2s ease-in-out infinite}
+.hum i.lo{animation:flk .7s steps(2) infinite}
+.a:hover .mod{text-shadow:0 0 12px var(--yel)}
+.sk .d.s1,.sk .d.s2{box-shadow:0 0 8px currentColor}
+.tabs{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-bottom:10px}
+.tabs .b{margin:0}
+#st{color:var(--yel);font-size:12px}
+.rw{display:flex;flex-wrap:wrap;gap:6px;align-items:center;padding:8px;border:1px solid var(--redd);margin-bottom:6px;background:rgba(255,77,77,.04);transition:.25s}
+.rw.on{border-color:var(--cyan);box-shadow:inset 0 0 16px rgba(79,227,255,.2)}
+.rw .nm{flex:1 1 140px;font-weight:800;letter-spacing:.06em}
+.rw small{display:block;font-weight:400;color:var(--dim);letter-spacing:0}
+.rw .b{margin:0;padding:5px 9px}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
 #pv{aspect-ratio:3/4;max-width:240px;margin:0 auto;border:1px solid var(--cyan);background:#0b0710 center/cover no-repeat;display:flex;align-items:center;justify-content:center;color:var(--cyan);letter-spacing:.2em;font-weight:800;cursor:pointer;clip-path:polygon(0 0,calc(100% - 18px) 0,100% 18px,100% 100%,18px 100%,0 calc(100% - 18px))}
 #pv.on span{display:none}
 .hum{height:20px;border:1px solid var(--cyan);background:#0b0710;position:relative}
@@ -75,6 +108,12 @@ button.b:hover{background:var(--cyan);color:#000}
 </div>
 
 <div class="grid">
+  <section class="p full">
+    <h2>Мои персонажи</h2>
+    <div class="tabs"><button class="b on" data-act="tab0">Активные</button><button class="b" data-act="tab1">Архив</button><button class="b" data-act="new">＋ Новый</button><button class="b" data-act="save">Сохранить</button><span id="st"></span></div>
+    <div id="rl"></div>
+  </section>
+
   <section class="p">
     <h2>Профиль</h2>
     <div class="f">
@@ -161,9 +200,9 @@ button.b:hover{background:var(--cyan);color:#000}
   <section class="p full">
     <h2>Передать лист</h2>
     <button class="b" id="ex">Получить код листа</button>
-    <button class="b" id="im">Загрузить код из поля</button>
-    <button class="b" id="dl">Скачать мой лист файлом</button>
-    <textarea id="io" style="min-height:70px;margin-top:8px" placeholder="Здесь появится код листа. Скопируй и отправь другу. Чтобы загрузить чужой — вставь код сюда и нажми «Загрузить»."></textarea>
+    <button class="b" id="im">Добавить по коду</button>
+    <button class="b" id="dl">Скачать копию файлом</button>
+    <textarea id="io" style="min-height:70px;margin-top:8px" placeholder="Нажми «Получить код» и отправь его мастеру. Чтобы посмотреть чужого персонажа — вставь код сюда и нажми «Добавить по коду»."></textarea>
   </section>
 </div>
 </div>
@@ -176,14 +215,20 @@ const SK=[['Акробатика','dex'],['Анализ','int'],['Атлетик
 const IMP=['Лобная доля','Нервная система','Кровеносная','Иммунная','Кожа','Скелет','Руки','Ладони','Ноги','Опер. система'];
 const $=s=>document.querySelector(s);
 const sg=n=>(n>=0?'+':'')+n;
-let S={};
-try{S=JSON.parse(localStorage.getItem('cp-dnd')||'{}')}catch(e){}
-if(!Object.keys(S).length&&window.INIT)S={...window.INIT};
-function persist(){try{localStorage.setItem('cp-dnd',JSON.stringify(S))}catch(e){}}
+let S={},DB=null,tab=0;
+try{DB=JSON.parse(localStorage.getItem('cp-db')||'null')}catch(e){}
+if(!DB||!DB.list||!DB.list.length){
+  let o={};try{o=JSON.parse(localStorage.getItem('cp-dnd')||'{}')}catch(e){}
+  if(window.INIT&&!window.INIT.list&&!Object.keys(o).length)o={...window.INIT};
+  DB=(window.INIT&&window.INIT.list)?window.INIT:{cur:1,list:[{id:1,d:o,arch:0}]};
+}
+const cur=()=>DB.list.find(c=>c.id===DB.cur)||DB.list[0];
+S=cur().d;DB.cur=cur().id;
+function persist(){try{localStorage.setItem('cp-db',JSON.stringify(DB))}catch(e){}}
 
 
 function load(){
-  document.querySelectorAll('[data-k]').forEach(e=>{if(S[e.dataset.k]!==undefined)e.value=S[e.dataset.k]});
+  document.querySelectorAll('[data-k]').forEach(e=>{e.value=S[e.dataset.k]??e.defaultValue});
   showPhoto();
   recalc();
 }
@@ -193,6 +238,7 @@ function showPhoto(){
   p.classList.toggle('on',!!S.photo);
 }
 function recalc(){
+  renderList();
   const XP=[0,300,900,2700,6500,14000,23000,34000,48000,64000,85000,100000,120000,140000,165000,195000,225000,265000,305000,355000];
   const xp=Math.max(0,+S.xp||0);let lvl=1;XP.forEach((t,i)=>{if(xp>=t)lvl=i+1});
   $('#lvd').textContent=lvl;
@@ -208,7 +254,7 @@ function recalc(){
   $('#pp').textContent=10+mod.wis+pb*wisProf;
   const hm=+(S.humm??100)||100,h=Math.max(0,Math.min(hm,+(S.hum??hm))),pc=h/hm*100;
   $('#hb').style.width=pc+'%';
-  $('#hb').style.background=pc>50?'var(--cyan)':pc>25?'var(--yel)':'var(--red)';
+  const col=pc>50?'var(--cyan)':pc>25?'var(--yel)':'var(--red)';$('#hb').style.background=col;$('#hb').style.color=col;$('#hb').classList.toggle('lo',pc<=25);
   $('#hs').textContent=(pc>75?'СТАБИЛЕН':pc>50?'ДРОЖЬ В РУКАХ':pc>25?'ОТЧУЖДЕНИЕ':'КИБЕРПСИХОЗ')+' · '+h+' / '+hm;
 }
 function paint(key,p){
@@ -222,13 +268,55 @@ document.addEventListener('click',e=>{
   const k=s.dataset.s,max=k.startsWith('sv_')?2:3;
   S[k]=((+S[k]||0)+1)%max;persist();recalc();
 });
-$('#ex').onclick=()=>{
-  const c={...S};delete c.photo;const t=JSON.stringify(c);$('#io').value=t;$('#io').select();
-  try{navigator.clipboard.writeText(t)}catch(e){}
-};
-$('#im').onclick=()=>{
-  try{const o=JSON.parse($('#io').value);if(o&&typeof o==='object'){S={...o,photo:S.photo};persist();load()}}catch(e){$('#io').value='Не удалось прочитать код'}
-};
+const TR={а:'a',б:'b',в:'v',г:'g',д:'d',е:'e',ё:'e',ж:'zh',з:'z',и:'i',й:'y',к:'k',л:'l',м:'m',н:'n',о:'o',п:'p',р:'r',с:'s',т:'t',у:'u',ф:'f',х:'kh',ц:'ts',ч:'ch',ш:'sh',щ:'sch',ъ:'',ы:'y',ь:'',э:'e',ю:'yu',я:'ya'};
+const lat=s=>[...s.toLowerCase()].map(c=>TR[c]??c).join('').replace(/[^a-z0-9]+/g,' ').trim().split(' ').map(w=>w?w[0].toUpperCase()+w.slice(1):'').join('')||'Hero';
+const hs=p=>{let h=5381;for(const c of p)h=((h*33)^c.charCodeAt(0))>>>0;return String(h%100000).padStart(5,'0')};
+const pipe=async(x,T)=>new Uint8Array(await new Response(new Blob([x]).stream().pipeThrough(new T('deflate'))).arrayBuffer());
+async function encode(d){
+  const c={...d};delete c.photo;const j=JSON.stringify(c);
+  let b,m='r';
+  try{b=await pipe(j,CompressionStream);m='z'}catch(e){b=new TextEncoder().encode(j)}
+  let s='';b.forEach(x=>s+=String.fromCharCode(x));
+  const p=m+btoa(s).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');
+  return hs(p)+'-'+lat(d.name||'')+'.'+p;
+}
+async function decode(t){
+  t=t.replace(/\s+/g,'');
+  if(t[0]==='{')return JSON.parse(t);
+  const i=t.indexOf('.'),p=t.slice(i+1);
+  if(i<0||t.slice(0,5)!==hs(p))throw 0;
+  const q=p.slice(1).replace(/-/g,'+').replace(/_/g,'/'),s=atob(q+'='.repeat((4-q.length%4)%4));
+  const b=Uint8Array.from(s,x=>x.charCodeAt(0));
+  return JSON.parse(new TextDecoder().decode(p[0]==='z'?await pipe(b,DecompressionStream):b));
+}
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+let pend=0;
+function flash(t,ms=1800){$('#st').textContent=t;setTimeout(()=>$('#st').textContent='',ms)}
+function go(id){DB.cur=id;S=cur().d;persist()}
+function add(d){const id=Date.now();DB.list.push({id,d,arch:0});tab=0;go(id)}
+function fix(){const c=DB.list.find(x=>!x.arch);c?go(c.id):add({})}
+function renderList(){
+  const L=DB.list.filter(c=>!!c.arch===!!tab);
+  $('#rl').innerHTML=L.length?L.map(c=>`<div class="rw${c.id===DB.cur?' on':''}"><div class="nm">${esc(c.d.name||'Без имени')}<small>${esc([c.d.cls,c.d.race].filter(Boolean).join(' · '))}</small></div><button class="b" data-act="open" data-id="${c.id}">Открыть</button><button class="b" data-act="arch" data-id="${c.id}">${c.arch?'Вернуть':'В архив'}</button><button class="b r" data-act="del" data-id="${c.id}">${pend===c.id?'Точно?':'Удалить'}</button></div>`).join(''):'<p class="hint">Здесь пока пусто.</p>';
+  document.querySelectorAll('[data-act^=tab]').forEach(b=>b.classList.toggle('on',+b.dataset.act[3]===tab));
+}
+document.addEventListener('click',e=>{
+  const b=e.target.closest('[data-act]');if(!b)return;
+  const a=b.dataset.act,id=+b.dataset.id;
+  if(a==='tab0'||a==='tab1')tab=+a[3];
+  else if(a==='new')add({});
+  else if(a==='save'){persist();flash('Сохранено ✓')}
+  else if(a==='open')go(id);
+  else if(a==='arch'){const c=DB.list.find(x=>x.id===id);c.arch=c.arch?0:1;if(c.arch&&id===DB.cur)fix();persist()}
+  else if(a==='del'){
+    if(pend!==id){pend=id;setTimeout(()=>{if(pend===id){pend=0;renderList()}},3000)}
+    else{DB.list=DB.list.filter(x=>x.id!==id);pend=0;if(!DB.list.length)DB.list.push({id:Date.now(),d:{},arch:0});if(id===DB.cur)fix();persist()}
+  }
+  load();
+});
+$('#ex').onclick=async()=>{const t=await encode(S);$('#io').value=t;$('#io').select();try{navigator.clipboard.writeText(t)}catch(e){}flash('Код готов ✓')};
+$('#im').onclick=async()=>{try{const o=await decode($('#io').value);if(!o||typeof o!=='object')throw 0;delete o.photo;add(o);load();$('#io').value='';flash('Персонаж добавлен ✓')}catch(e){flash('Код не читается — скопируй его целиком',3500)}};
+document.querySelectorAll('.grid>.p').forEach((p,i)=>p.style.animationDelay=i*.06+'s');
 $('#ph').onchange=e=>{
   const f=e.target.files[0];if(!f)return;
   const r=new FileReader();
@@ -243,7 +331,7 @@ $('#ph').onchange=e=>{
 $('#phx').onclick=()=>{delete S.photo;persist();showPhoto()};
 $('#dl').onclick=()=>{
   let h='<!DOCTYPE html>\n'+document.documentElement.outerHTML.replace(/ class="js"/,'');
-  const d='window.INIT='+JSON.stringify(S).replace(/</g,'\\u003c')+';/*end*/';
+  const d='window.INIT='+JSON.stringify(DB).replace(/</g,'\\u003c')+';/*end*/';
   h=h.replace(/window\.INIT=[\s\S]*?;\/\*end\*\//,()=>d);
   const a=document.createElement('a');
   a.href=URL.createObjectURL(new Blob([h],{type:'text/html'}));
