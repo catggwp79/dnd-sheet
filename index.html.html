@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Лист персонажа // D&D</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;600;800&display=swap">
+<style>
+:root{--bg:#0b0710;--panel:#160c1b;--red:#ff4d4d;--redd:#7a1f2b;--cyan:#4fe3ff;--yel:#fcee0a;--txt:#e9dfe6;--dim:#8a7a88;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:dark}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:radial-gradient(ellipse at 50% 0,#2a0f1f 0,var(--bg) 60%) fixed,var(--bg);color:var(--txt);font:15px/1.4 "Exo 2",system-ui,sans-serif}
+.wrap{max-width:1100px;margin:0 auto;padding:14px}
+h1{margin:0;font-size:22px;letter-spacing:.14em;color:var(--red);text-transform:uppercase}
+h1 small{display:block;font-size:11px;color:var(--dim);letter-spacing:.3em}
+.top{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:10px;border-bottom:2px solid var(--red);padding-bottom:8px;margin-bottom:14px}
+.badges{display:flex;gap:18px;align-items:baseline}
+.badge b{font-size:28px;color:var(--cyan);font-weight:800}
+.badge span{font-size:12px;letter-spacing:.15em;color:var(--cyan)}
+.badge.m b,.badge.m span{color:var(--yel)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:14px}
+.p{background:var(--panel);border:1px solid var(--redd);border-left:4px solid var(--red);padding:12px;clip-path:polygon(0 0,calc(100% - 16px) 0,100% 16px,100% 100%,0 100%)}
+.p h2{margin:0 0 10px;font-size:13px;letter-spacing:.2em;color:var(--red);text-transform:uppercase}
+.p h2::after{content:"";display:block;height:1px;background:linear-gradient(90deg,var(--red),transparent);margin-top:4px}
+label{display:block;font-size:10px;letter-spacing:.15em;color:var(--dim);text-transform:uppercase}
+input,textarea{width:100%;background:rgba(79,227,255,.06);border:0;border-bottom:1px solid var(--cyan);color:var(--txt);font:inherit;padding:5px 6px;border-radius:0;outline:none}
+input:focus,textarea:focus{background:rgba(79,227,255,.14);border-color:var(--yel)}
+textarea{resize:vertical;min-height:90px}
+.f{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.f .w{grid-column:1/-1}
+.ab{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.a{border:1px solid var(--redd);padding:6px;text-align:center;background:rgba(255,77,77,.05)}
+.a .n{font-size:11px;letter-spacing:.2em;color:var(--red);font-weight:600}
+.a .mod{font-size:26px;font-weight:800;color:var(--yel);line-height:1.1}
+.a input{text-align:center;font-size:15px}
+.a .sv{font-size:11px;color:var(--dim);margin-top:4px;display:flex;justify-content:center;gap:5px;align-items:center}
+.a .sv b{color:var(--cyan)}
+.big{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:8px}
+.big div{text-align:center}
+.big input{text-align:center;font-size:20px;font-weight:800}
+.big .v{font-size:20px;font-weight:800;color:var(--yel);padding:5px 0;border-bottom:1px solid var(--redd)}
+.sk{display:flex;align-items:center;gap:8px;padding:3px 0;border-bottom:1px dashed #3a2332;font-size:14px}
+.sk .d{width:16px;height:16px;border:1px solid var(--cyan);background:none;padding:0;cursor:pointer;flex:none;transform:rotate(45deg) scale(.8)}
+.sk .d.s1{background:var(--cyan)}
+.sk .d.s2{background:var(--yel);border-color:var(--yel);box-shadow:0 0 6px var(--yel)}
+.sk .v{width:30px;text-align:right;color:var(--yel);font-weight:600}
+.sk em{margin-left:auto;font-style:normal;font-size:10px;color:var(--dim);letter-spacing:.1em}
+.hint{font-size:11px;color:var(--dim);margin:6px 0 0}
+.imp{display:grid;grid-template-columns:110px 1fr;gap:8px;align-items:center;margin-bottom:6px}
+.imp span{font-size:12px;color:var(--red);letter-spacing:.1em;text-transform:uppercase}
+.eb{color:var(--yel)}
+button.b{background:transparent;color:var(--cyan);border:1px solid var(--cyan);padding:7px 12px;font:inherit;font-size:12px;letter-spacing:.1em;cursor:pointer;margin:6px 6px 0 0}
+button.b:hover{background:var(--cyan);color:#000}
+.full{grid-column:1/-1}
+#nojs{border:1px solid var(--yel);color:var(--yel);padding:8px 12px;margin-bottom:14px;font-size:13px}
+.js #nojs{display:none}
+#pv{aspect-ratio:3/4;max-width:240px;margin:0 auto;border:1px solid var(--cyan);background:#0b0710 center/cover no-repeat;display:flex;align-items:center;justify-content:center;color:var(--cyan);letter-spacing:.2em;font-weight:800;cursor:pointer;clip-path:polygon(0 0,calc(100% - 18px) 0,100% 18px,100% 100%,18px 100%,0 calc(100% - 18px))}
+#pv.on span{display:none}
+.hum{height:20px;border:1px solid var(--cyan);background:#0b0710;position:relative}
+.hum i{display:block;height:100%;width:100%;background:var(--cyan);transition:width .3s,background .3s}
+.hum::after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(90deg,transparent 0 9px,var(--bg) 9px 11px)}
+.hst{margin-top:10px;font-weight:800;letter-spacing:.2em;color:var(--yel)}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div id="nojs">⚠ Расчёты, шкала человечности и уровень не работают? Открой файл в браузере (Chrome или Safari), а не в просмотре внутри мессенджера.</div>
+<div class="top">
+  <h1>Лист персонажа<small>D&amp;D 5E // НОЧНОЙ ГОРОД</small></h1>
+  <div class="badges">
+    <div class="badge"><b id="lv">1</b> <span>УРОВЕНЬ</span></div>
+    <div class="badge m"><b id="pb">+2</b> <span>БОНУС МАСТЕРСТВА</span></div>
+  </div>
+</div>
+
+<div class="grid">
+  <section class="p">
+    <h2>Профиль</h2>
+    <div class="f">
+      <div class="w"><label>Имя персонажа</label><input data-k="name"></div>
+      <div><label>Класс</label><input data-k="cls"></div>
+      <div><label>Раса</label><input data-k="race"></div>
+      <div><label>Уровень (авто)</label><div id="lvd" style="font-size:20px;font-weight:800;color:var(--yel);padding:3px 0;border-bottom:1px solid var(--redd)">1</div></div>
+      <div><label>Опыт <span id="nx"></span></label><input type="number" min="0" placeholder="0" data-k="xp"></div>
+      <div><label>Предыстория</label><input data-k="bg"></div>
+      <div><label>Мировоззрение</label><input data-k="al"></div>
+      <div class="w"><label class="eb">€$ Деньги</label><input data-k="money"></div>
+    </div>
+  </section>
+
+  <section class="p">
+    <h2>Портрет</h2>
+    <label><div id="pv"><span>+ ФОТО</span></div><input type="file" accept="image/*" id="ph" hidden></label>
+    <div style="text-align:center"><button class="b" id="phx">Убрать фото</button></div>
+  </section>
+
+  <section class="p">
+    <h2>Человечность</h2>
+    <div class="hum"><i id="hb"></i></div>
+    <div class="f" style="margin-top:8px"><div><label>Текущая</label><input type="number" value="100" data-k="hum"></div><div><label>Максимум</label><input type="number" value="100" data-k="humm"></div></div>
+    <div class="hst" id="hs">СТАБИЛЕН</div>
+  </section>
+
+  <section class="p">
+    <h2>Боевые показатели</h2>
+    <div class="big">
+      <div><label>КД</label><input type="number" data-k="ac"></div>
+      <div><label>Инициатива</label><div class="v" id="init">+0</div></div>
+      <div><label>Скорость</label><input data-k="spd"></div>
+    </div>
+    <div class="big">
+      <div><label>Макс. ХП</label><input type="number" data-k="hpm"></div>
+      <div><label>Текущие ХП</label><input type="number" data-k="hp"></div>
+      <div><label>Врем. ХП</label><input type="number" data-k="thp"></div>
+    </div>
+    <div class="big">
+      <div><label>Кости хитов</label><input data-k="hd"></div>
+      <div><label>Пасс. внимат.</label><div class="v" id="pp">10</div></div>
+      <div><label>Вдохновение</label><input data-k="insp"></div>
+    </div>
+  </section>
+
+  <section class="p">
+    <h2>Характеристики</h2>
+    <div class="ab" id="abs"><div class="a"><div class="n">СИЛ</div><div class="mod" id="m_str">+0</div><input type="number" value="10" data-k="str"><div class="sv"><button class="d sk-d" style="all:unset;width:12px;height:12px;border:1px solid var(--cyan);transform:rotate(45deg) scale(.8);cursor:pointer" data-s="sv_str"></button><b id="sv_str">+0</b></div></div><div class="a"><div class="n">ЛОВ</div><div class="mod" id="m_dex">+0</div><input type="number" value="10" data-k="dex"><div class="sv"><button class="d sk-d" style="all:unset;width:12px;height:12px;border:1px solid var(--cyan);transform:rotate(45deg) scale(.8);cursor:pointer" data-s="sv_dex"></button><b id="sv_dex">+0</b></div></div><div class="a"><div class="n">ТЕЛ</div><div class="mod" id="m_con">+0</div><input type="number" value="10" data-k="con"><div class="sv"><button class="d sk-d" style="all:unset;width:12px;height:12px;border:1px solid var(--cyan);transform:rotate(45deg) scale(.8);cursor:pointer" data-s="sv_con"></button><b id="sv_con">+0</b></div></div><div class="a"><div class="n">ИНТ</div><div class="mod" id="m_int">+0</div><input type="number" value="10" data-k="int"><div class="sv"><button class="d sk-d" style="all:unset;width:12px;height:12px;border:1px solid var(--cyan);transform:rotate(45deg) scale(.8);cursor:pointer" data-s="sv_int"></button><b id="sv_int">+0</b></div></div><div class="a"><div class="n">МУД</div><div class="mod" id="m_wis">+0</div><input type="number" value="10" data-k="wis"><div class="sv"><button class="d sk-d" style="all:unset;width:12px;height:12px;border:1px solid var(--cyan);transform:rotate(45deg) scale(.8);cursor:pointer" data-s="sv_wis"></button><b id="sv_wis">+0</b></div></div><div class="a"><div class="n">ХАР</div><div class="mod" id="m_cha">+0</div><input type="number" value="10" data-k="cha"><div class="sv"><button class="d sk-d" style="all:unset;width:12px;height:12px;border:1px solid var(--cyan);transform:rotate(45deg) scale(.8);cursor:pointer" data-s="sv_cha"></button><b id="sv_cha">+0</b></div></div></div>
+    <p class="hint">Ромб у спасброска — владение.</p>
+  </section>
+
+  <section class="p">
+    <h2>Навыки</h2>
+    <div id="sks"><div class="sk"><button class="d" data-s="sk_0"></button><span class="v" id="skv_0">+0</span><span>Акробатика</span><em>DEX</em></div><div class="sk"><button class="d" data-s="sk_1"></button><span class="v" id="skv_1">+0</span><span>Анализ</span><em>INT</em></div><div class="sk"><button class="d" data-s="sk_2"></button><span class="v" id="skv_2">+0</span><span>Атлетика</span><em>STR</em></div><div class="sk"><button class="d" data-s="sk_3"></button><span class="v" id="skv_3">+0</span><span>Внимательность</span><em>WIS</em></div><div class="sk"><button class="d" data-s="sk_4"></button><span class="v" id="skv_4">+0</span><span>Выживание</span><em>WIS</em></div><div class="sk"><button class="d" data-s="sk_5"></button><span class="v" id="skv_5">+0</span><span>Выступление</span><em>CHA</em></div><div class="sk"><button class="d" data-s="sk_6"></button><span class="v" id="skv_6">+0</span><span>Запугивание</span><em>CHA</em></div><div class="sk"><button class="d" data-s="sk_7"></button><span class="v" id="skv_7">+0</span><span>История</span><em>INT</em></div><div class="sk"><button class="d" data-s="sk_8"></button><span class="v" id="skv_8">+0</span><span>Ловкость рук</span><em>DEX</em></div><div class="sk"><button class="d" data-s="sk_9"></button><span class="v" id="skv_9">+0</span><span>Магия</span><em>INT</em></div><div class="sk"><button class="d" data-s="sk_10"></button><span class="v" id="skv_10">+0</span><span>Медицина</span><em>WIS</em></div><div class="sk"><button class="d" data-s="sk_11"></button><span class="v" id="skv_11">+0</span><span>Обман</span><em>CHA</em></div><div class="sk"><button class="d" data-s="sk_12"></button><span class="v" id="skv_12">+0</span><span>Природа</span><em>INT</em></div><div class="sk"><button class="d" data-s="sk_13"></button><span class="v" id="skv_13">+0</span><span>Проницательность</span><em>WIS</em></div><div class="sk"><button class="d" data-s="sk_14"></button><span class="v" id="skv_14">+0</span><span>Религия</span><em>INT</em></div><div class="sk"><button class="d" data-s="sk_15"></button><span class="v" id="skv_15">+0</span><span>Скрытность</span><em>DEX</em></div><div class="sk"><button class="d" data-s="sk_16"></button><span class="v" id="skv_16">+0</span><span>Убеждение</span><em>CHA</em></div><div class="sk"><button class="d" data-s="sk_17"></button><span class="v" id="skv_17">+0</span><span>Уход за животными</span><em>WIS</em></div></div>
+    <p class="hint">Нажми на ромб: владение → компетентность → нет.</p>
+  </section>
+
+  <section class="p">
+    <h2>Атаки</h2>
+    <textarea data-k="atk" style="min-height:200px" placeholder="Глефа — +5, 1d10+3 рубящий…"></textarea>
+  </section>
+
+  <section class="p">
+    <h2>Киберимпланты</h2>
+    <div id="imps"><div class="imp"><span>Лобная доля</span><input data-k="imp_0" placeholder="Название / эффект"></div><div class="imp"><span>Нервная система</span><input data-k="imp_1" placeholder="Название / эффект"></div><div class="imp"><span>Кровеносная</span><input data-k="imp_2" placeholder="Название / эффект"></div><div class="imp"><span>Иммунная</span><input data-k="imp_3" placeholder="Название / эффект"></div><div class="imp"><span>Кожа</span><input data-k="imp_4" placeholder="Название / эффект"></div><div class="imp"><span>Скелет</span><input data-k="imp_5" placeholder="Название / эффект"></div><div class="imp"><span>Руки</span><input data-k="imp_6" placeholder="Название / эффект"></div><div class="imp"><span>Ладони</span><input data-k="imp_7" placeholder="Название / эффект"></div><div class="imp"><span>Ноги</span><input data-k="imp_8" placeholder="Название / эффект"></div><div class="imp"><span>Опер. система</span><input data-k="imp_9" placeholder="Название / эффект"></div></div>
+  </section>
+
+  <section class="p">
+    <h2>Снаряжение</h2>
+    <textarea data-k="gear" style="min-height:160px"></textarea>
+  </section>
+
+  <section class="p">
+    <h2>Умения и черты</h2>
+    <textarea data-k="feat" style="min-height:160px"></textarea>
+  </section>
+
+  <section class="p full">
+    <h2>Личность и заметки</h2>
+    <textarea data-k="notes" style="min-height:120px"></textarea>
+  </section>
+
+  <section class="p full">
+    <h2>Передать лист</h2>
+    <button class="b" id="ex">Получить код листа</button>
+    <button class="b" id="im">Загрузить код из поля</button>
+    <button class="b" id="dl">Скачать мой лист файлом</button>
+    <textarea id="io" style="min-height:70px;margin-top:8px" placeholder="Здесь появится код листа. Скопируй и отправь другу. Чтобы загрузить чужой — вставь код сюда и нажми «Загрузить»."></textarea>
+  </section>
+</div>
+</div>
+
+<script>window.INIT=null;/*end*/</script>
+<script>
+document.documentElement.classList.add('js');
+const AB=[['str','СИЛ'],['dex','ЛОВ'],['con','ТЕЛ'],['int','ИНТ'],['wis','МУД'],['cha','ХАР']];
+const SK=[['Акробатика','dex'],['Анализ','int'],['Атлетика','str'],['Внимательность','wis'],['Выживание','wis'],['Выступление','cha'],['Запугивание','cha'],['История','int'],['Ловкость рук','dex'],['Магия','int'],['Медицина','wis'],['Обман','cha'],['Природа','int'],['Проницательность','wis'],['Религия','int'],['Скрытность','dex'],['Убеждение','cha'],['Уход за животными','wis']];
+const IMP=['Лобная доля','Нервная система','Кровеносная','Иммунная','Кожа','Скелет','Руки','Ладони','Ноги','Опер. система'];
+const $=s=>document.querySelector(s);
+const sg=n=>(n>=0?'+':'')+n;
+let S={};
+try{S=JSON.parse(localStorage.getItem('cp-dnd')||'{}')}catch(e){}
+if(!Object.keys(S).length&&window.INIT)S={...window.INIT};
+function persist(){try{localStorage.setItem('cp-dnd',JSON.stringify(S))}catch(e){}}
+
+
+function load(){
+  document.querySelectorAll('[data-k]').forEach(e=>{if(S[e.dataset.k]!==undefined)e.value=S[e.dataset.k]});
+  showPhoto();
+  recalc();
+}
+function showPhoto(){
+  const p=$('#pv');
+  p.style.backgroundImage=S.photo?`url(${S.photo})`:'none';
+  p.classList.toggle('on',!!S.photo);
+}
+function recalc(){
+  const XP=[0,300,900,2700,6500,14000,23000,34000,48000,64000,85000,100000,120000,140000,165000,195000,225000,265000,305000,355000];
+  const xp=Math.max(0,+S.xp||0);let lvl=1;XP.forEach((t,i)=>{if(xp>=t)lvl=i+1});
+  $('#lvd').textContent=lvl;
+  $('#nx').textContent=lvl<20?'· ДО '+(lvl+1)+' УР.: '+(XP[lvl]-xp):'· МАКС.';
+  const pb=2+Math.floor((lvl-1)/4);
+  $('#lv').textContent=lvl;$('#pb').textContent=sg(pb);
+  const mod={};
+  AB.forEach(([k])=>{const sc=+(S[k]??10);mod[k]=Math.floor((sc-10)/2);$('#m_'+k).textContent=sg(mod[k]);
+    const p=+S['sv_'+k]||0;$('#sv_'+k).textContent=sg(mod[k]+(p?pb:0));paint('sv_'+k,p)});
+  let wisProf=0;
+  SK.forEach(([n,a],i)=>{const p=+S['sk_'+i]||0;$('#skv_'+i).textContent=sg(mod[a]+pb*p);paint('sk_'+i,p);if(n==='Внимательность')wisProf=p});
+  $('#init').textContent=sg(mod.dex);
+  $('#pp').textContent=10+mod.wis+pb*wisProf;
+  const hm=+(S.humm??100)||100,h=Math.max(0,Math.min(hm,+(S.hum??hm))),pc=h/hm*100;
+  $('#hb').style.width=pc+'%';
+  $('#hb').style.background=pc>50?'var(--cyan)':pc>25?'var(--yel)':'var(--red)';
+  $('#hs').textContent=(pc>75?'СТАБИЛЕН':pc>50?'ДРОЖЬ В РУКАХ':pc>25?'ОТЧУЖДЕНИЕ':'КИБЕРПСИХОЗ')+' · '+h+' / '+hm;
+}
+function paint(key,p){
+  const b=document.querySelector(`[data-s="${key}"]`);if(!b)return;
+  b.classList.toggle('s1',p===1);b.classList.toggle('s2',p===2);
+  if(key.startsWith('sv_')){b.style.background=p?'var(--cyan)':'none'}
+}
+document.addEventListener('input',e=>{const k=e.target.dataset&&e.target.dataset.k;if(k){S[k]=e.target.value;persist();recalc()}});
+document.addEventListener('click',e=>{
+  const s=e.target.closest('[data-s]');if(!s)return;
+  const k=s.dataset.s,max=k.startsWith('sv_')?2:3;
+  S[k]=((+S[k]||0)+1)%max;persist();recalc();
+});
+$('#ex').onclick=()=>{
+  const c={...S};delete c.photo;const t=JSON.stringify(c);$('#io').value=t;$('#io').select();
+  try{navigator.clipboard.writeText(t)}catch(e){}
+};
+$('#im').onclick=()=>{
+  try{const o=JSON.parse($('#io').value);if(o&&typeof o==='object'){S={...o,photo:S.photo};persist();load()}}catch(e){$('#io').value='Не удалось прочитать код'}
+};
+$('#ph').onchange=e=>{
+  const f=e.target.files[0];if(!f)return;
+  const r=new FileReader();
+  r.onload=()=>{const im=new Image();im.onload=()=>{
+    const k=Math.min(1,420/Math.max(im.width,im.height));
+    const c=document.createElement('canvas');c.width=Math.round(im.width*k);c.height=Math.round(im.height*k);
+    c.getContext('2d').drawImage(im,0,0,c.width,c.height);
+    S.photo=c.toDataURL('image/jpeg',.82);persist();showPhoto();
+  };im.src=r.result};
+  r.readAsDataURL(f);
+};
+$('#phx').onclick=()=>{delete S.photo;persist();showPhoto()};
+$('#dl').onclick=()=>{
+  let h='<!DOCTYPE html>\n'+document.documentElement.outerHTML.replace(/ class="js"/,'');
+  const d='window.INIT='+JSON.stringify(S).replace(/</g,'\\u003c')+';/*end*/';
+  h=h.replace(/window\.INIT=[\s\S]*?;\/\*end\*\//,()=>d);
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(new Blob([h],{type:'text/html'}));
+  a.download='dnd-sheet.html';document.body.appendChild(a);a.click();a.remove();
+};
+load();
+</script>
+</body>
+</html>
