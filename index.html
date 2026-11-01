@@ -94,7 +94,6 @@ button.b.r:hover{background:var(--red);color:#000;box-shadow:0 0 14px var(--red)
 .body{width:100%;height:auto;align-self:center;filter:drop-shadow(0 0 8px rgba(var(--pr),.7))}
 .body .d{fill:var(--cyan);animation:pul 2s ease-in-out infinite}
 @media(min-width:700px){.cw{grid-template-columns:1fr 190px 1fr}}
-.top{padding-right:52px}
 #toast{position:fixed;left:50%;bottom:calc(env(safe-area-inset-bottom,0px) + 16px);transform:translate(-50%,20px);width:min(420px,calc(100vw - 24px));z-index:90;background:rgba(18,10,24,.97);border:1px solid var(--yel);color:var(--yel);padding:10px 12px;font-size:13px;opacity:0;pointer-events:none;transition:.3s}
 #toast.on{opacity:1;transform:translate(-50%,0)}
 .body{filter:drop-shadow(0 0 8px rgba(var(--gl),calc(.35 + var(--gi)*.6)))}
@@ -157,6 +156,49 @@ input[readonly]{opacity:.65}
 .at input{padding:5px 4px;font-size:13px}
 .coins{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin-bottom:8px}
 .coins input{text-align:center;padding:5px 2px}
+.top{padding-right:104px}
+.big>div{position:relative}
+.hpd{position:absolute;left:50%;top:12px;font-weight:800;font-size:24px;pointer-events:none;z-index:2;text-shadow:0 0 10px currentColor;animation:hpd 1.4s ease-out forwards}
+.hpd.dm{color:#ff3b4a}.hpd.hl{color:#39ff88}
+@keyframes hpd{0%{opacity:0;transform:translate(-50%,12px) scale(.6)}25%{opacity:1}100%{opacity:0;transform:translate(-50%,-40px) scale(1.2)}}
+@keyframes wake{0%{opacity:.05}8%{opacity:1}14%{opacity:.15}24%{opacity:.9}32%{opacity:.25}45%{opacity:1}60%{opacity:.6}100%{opacity:1}}
+.wake .grid,.wake .badges{animation:wake 1.2s linear}
+.cf{border:1px solid var(--yel);padding:10px;margin-bottom:10px;font-size:13px}
+.cf[hidden]{display:none}
+.cf p{margin:0 0 8px}
+.cf .no{color:var(--red);text-decoration:underline;text-decoration-color:var(--red);font-weight:800}
+.alts{display:flex;flex-wrap:wrap;gap:6px}.alts .b{margin:0;padding:4px 8px;font-size:12px}
+.ic .sg{color:var(--yel);letter-spacing:0;text-transform:none;font-size:13px}
+#bell{position:fixed;top:calc(env(safe-area-inset-top,0px) + 10px);right:58px;z-index:70;width:42px;height:42px;border:1px solid var(--cyan);background:rgba(11,7,16,.88);color:var(--cyan);cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0;transition:box-shadow .3s}
+#bell svg{filter:drop-shadow(0 0 4px currentColor)}
+#bell:hover{box-shadow:0 0 12px rgba(var(--sr),.6)}
+#bell.has{color:var(--yel);animation:ring 1.6s ease-in-out infinite}
+@keyframes ring{0%,60%,100%{transform:rotate(0)}10%{transform:rotate(14deg)}20%{transform:rotate(-12deg)}30%{transform:rotate(8deg)}40%{transform:rotate(-6deg)}}
+#bn{position:absolute;top:-7px;right:-7px;min-width:18px;height:18px;border-radius:9px;background:var(--red);color:#000;font:800 11px/18px sans-serif;text-align:center;font-style:normal}
+#bn:empty{display:none}
+#nt{position:fixed;top:calc(env(safe-area-inset-top,0px) + 58px);right:10px;z-index:70;width:min(360px,calc(100vw - 20px));max-height:calc(100vh - 90px);overflow:auto;background:rgba(18,10,24,.97);border:1px solid var(--yel);padding:12px;font-size:13px}
+#nt[hidden]{display:none}
+.nti{border-bottom:1px dashed #3a2332;padding:8px 0}
+.nti .df{margin:3px 0}.nti s{color:var(--dim)}.nti em{color:var(--yel);font-style:normal}
+.nti .b{margin:8px 6px 0 0}
+.dr{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:10px}
+#dv{font-size:46px;font-weight:800;color:var(--cyan);min-width:96px;text-align:center;text-shadow:0 0 14px var(--cyan);line-height:1}
+#dv.crit{color:#39ff88;text-shadow:0 0 18px #39ff88}#dv.fail{color:var(--red);text-shadow:0 0 18px var(--red)}
+#dv.pop{animation:popn .5s}
+@keyframes popn{0%{transform:scale(.6);opacity:.3}60%{transform:scale(1.25)}100%{transform:scale(1);opacity:1}}
+#dx{font-size:12px;color:var(--dim)}
+.dctl{display:flex;gap:10px;margin-left:auto}.dctl input{width:64px;text-align:center}
+.dk{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:8px}
+.die{all:unset;cursor:pointer;width:54px;height:54px;color:var(--cyan);transition:.2s}
+.die svg{width:100%;height:100%;fill:rgba(var(--sr),.08);stroke:currentColor;stroke-width:1.6;stroke-linejoin:round}
+.die text{fill:currentColor;stroke:none;font:700 10px sans-serif}
+.die:hover{color:var(--yel);filter:drop-shadow(0 0 8px currentColor);transform:translateY(-2px)}
+.die.roll svg{animation:spin .6s ease-out}
+@keyframes spin{to{transform:rotate(360deg)}}
+#dh{max-height:150px;overflow:auto}
+.rh{display:flex;gap:10px;font-size:12px;padding:3px 0;border-bottom:1px dashed #3a2332}
+.rh span{color:var(--dim)}.rh b{color:var(--cyan)}.rh i{margin-left:auto;font-style:normal;color:var(--yel);font-weight:800}
+.rh.crit i{color:#39ff88}.rh.fail i{color:var(--red)}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
 #pv{aspect-ratio:3/4;max-width:240px;margin:0 auto;border:1px solid var(--cyan);background:#0b0710 center/cover no-repeat;display:flex;align-items:center;justify-content:center;color:var(--cyan);letter-spacing:.2em;font-weight:800;cursor:pointer;clip-path:polygon(0 0,calc(100% - 18px) 0,100% 18px,100% 100%,18px 100%,0 calc(100% - 18px))}
 #pv.on span{display:none}
@@ -171,6 +213,8 @@ input[readonly]{opacity:.65}
 <div id="vg"></div>
 <button id="gear" aria-label="Настройки"><svg viewBox="-12.5 -12.5 25 25" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" aria-hidden="true"><path d="M-1.98 -7.96 L-1.56 -11.09 L1.56 -11.09 L1.98 -7.96 L4.22 -7.03 L6.74 -8.94 L8.94 -6.74 L7.03 -4.22 L7.96 -1.98 L11.09 -1.56 L11.09 1.56 L7.96 1.98 L7.03 4.22 L8.94 6.74 L6.74 8.94 L4.22 7.03 L1.98 7.96 L1.56 11.09 L-1.56 11.09 L-1.98 7.96 L-4.22 7.03 L-6.74 8.94 L-8.94 6.74 L-7.03 4.22 L-7.96 1.98 L-11.09 1.56 L-11.09 -1.56 L-7.96 -1.98 L-7.03 -4.22 L-8.94 -6.74 L-6.74 -8.94 L-4.22 -7.03Z"/><circle r="3.6"/><circle r="1" fill="currentColor" stroke="none"/></svg></button>
 <div id="set" hidden></div>
+<button id="bell" aria-label="Уведомления"><svg viewBox="-12 -12 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true"><path d="M-7 6V-1C-7 -5 -4 -8 0 -8S7 -5 7 -1V6L9 8H-9Z"/><path d="M-2.5 10.5A2.5 2.5 0 0 0 2.5 10.5M0 -10.5V-8"/></svg><i id="bn"></i></button>
+<div id="nt" hidden></div>
 <div class="wrap">
 <div id="nojs">⚠ Расчёты, шкала человечности и уровень не работают? Открой файл в браузере (Chrome или Safari), а не в просмотре внутри мессенджера.</div>
 <div class="top">
@@ -182,12 +226,21 @@ input[readonly]{opacity:.65}
   </div>
 </div>
 
+<div id="mb" class="cf" hidden>Режим мастера: ты правишь копию игрока. Внеси изменения и нажми «Предложить игроку» в Мастер-меню. Игрок увидит их в уведомлениях и сам решит, принять или нет.</div>
 <div class="grid">
+  <section class="p full" id="dice">
+    <h2>Дайсы</h2>
+    <div class="dr"><div id="dv">–</div><div id="dx">Выбери кость</div><div class="dctl"><div><label>Кол-во</label><input type="number" id="dc" min="1" max="20" value="1"></div><div><label>Модификатор</label><input type="number" id="dmod" value="0"></div></div></div>
+    <div class="dk"><button class="die" data-d="4" aria-label="d4"><svg viewBox="0 0 40 40"><polygon points="20,5 36,33 4,33"/><text x="20" y="28" text-anchor="middle">4</text></svg></button><button class="die" data-d="6" aria-label="d6"><svg viewBox="0 0 40 40"><rect x="7" y="7" width="26" height="26" rx="3"/><text x="20" y="24" text-anchor="middle">6</text></svg></button><button class="die" data-d="8" aria-label="d8"><svg viewBox="0 0 40 40"><polygon points="20,3 36,20 20,37 4,20"/><text x="20" y="24" text-anchor="middle">8</text></svg></button><button class="die" data-d="10" aria-label="d10"><svg viewBox="0 0 40 40"><polygon points="20,3 35,15 30,36 10,36 5,15"/><path d="M20 3V12" opacity=".5"/><text x="20" y="24" text-anchor="middle">10</text></svg></button><button class="die" data-d="12" aria-label="d12"><svg viewBox="0 0 40 40"><polygon points="20,3 36,14 30,34 10,34 4,14"/><polygon points="20,11 28,17 25,27 15,27 12,17" opacity=".5"/><text x="20" y="23" text-anchor="middle">12</text></svg></button><button class="die" data-d="20" aria-label="d20"><svg viewBox="0 0 40 40"><polygon points="20,3 35,11.5 35,28.5 20,37 5,28.5 5,11.5"/><polygon points="20,10 29,26 11,26" opacity=".5"/><text x="20" y="25" text-anchor="middle">20</text></svg></button><button class="die" data-d="100" aria-label="d100"><svg viewBox="0 0 40 40"><polygon points="12,5 28,5 36,13 36,27 28,35 12,35 4,27 4,13"/><text x="20" y="24" text-anchor="middle">%</text></svg></button></div>
+    <div id="dh"></div>
+  </section>
+
   <section class="p full">
     <h2>Мои персонажи</h2>
     <div class="tabs"><button class="b on" data-act="tab0">Активные</button><button class="b" data-act="tab1">Архив</button><button class="b" data-act="new">＋ Новый</button><button class="b" data-act="save">Сохранить</button><span id="st"></span></div>
+    <div id="cf" class="cf" hidden><p>Твой сохранённый персонаж отправится мастеру. Ты уверен, что всё дописал? Если <span class="no">НЕТ</span>, лучше оставь его в архиве.</p><button class="b r" data-act="cfy">Точно?</button><button class="b" data-act="cfn">В архив</button><button class="b" data-act="cfc">Отмена</button></div>
     <div id="rl"></div>
-    <p class="hint" id="sync">Персонаж с именем автоматически отправляется мастеру (без фото).</p>
+    <p class="hint" id="sync">Мастер получает только сохранённых персонажей (без фото): нажми «Сохранить», когда допишешь. Черновики и архив остаются у тебя.</p>
     <p class="hint">🔒 Не вводи настоящие имена, телефоны, почту, ссылки и адреса: такие данные сайт не принимает.</p>
   </section>
 
@@ -227,7 +280,7 @@ input[readonly]{opacity:.65}
     </div>
     <div class="big">
       <div><label>Максимум хитов</label><input type="number" data-k="hpm"></div>
-      <div><label>Текущие хиты</label><input type="number" data-k="hp"></div>
+      <div><label>Текущие хиты</label><input type="number" value="1" data-k="hp"></div>
       <div><label>Временные хиты</label><input type="number" data-k="thp"></div>
     </div>
     <div class="big">
@@ -346,7 +399,7 @@ if(!DB||!DB.list||!DB.list.length){
 }
 const cur=()=>DB.list.find(c=>c.id===DB.cur)||DB.list[0];
 S=cur().d;DB.cur=cur().id;
-function persist(){try{localStorage.setItem('cp-db',JSON.stringify(DB))}catch(e){}queueSync()}
+function persist(){try{localStorage.setItem('cp-db',JSON.stringify(DB))}catch(e){}}
 
 
 function load(){
@@ -362,7 +415,9 @@ function showPhoto(){
 function recalc(){
   renderList();renderMaster();
   const hpv=String(S.hp??'').trim();
-  document.documentElement.classList.toggle('dead',hpv!==''&&(+hpv)<=0);$('#dn').textContent=S.name||'';
+  const dead=hpv!==''&&(+hpv)<=0,R=document.documentElement;
+  if(WD&&!dead){R.classList.add('wake');setTimeout(()=>R.classList.remove('wake'),1300)}
+  WD=dead;R.classList.toggle('dead',dead);$('#dn').textContent=S.name||'';$('#mb').hidden=!(cur().srv&&cur().srv!=='code');
   for(let i=0;i<3;i++){paint('ds_'+i,+S['ds_'+i]||0);paint('df_'+i,+S['df_'+i]||0)}
   document.querySelectorAll('[data-r]').forEach(e=>e.classList.toggle('lit',!!String(S[e.dataset.r]||'').trim()));
   document.querySelectorAll('textarea[data-k^=imp_]').forEach(e=>e.classList.toggle('on',!!e.value.trim()));
@@ -425,7 +480,7 @@ function add(d,x){const id=Date.now();DB.list.push({id,d,arch:0,...x});tab=0;go(
 function fix(){const c=DB.list.find(x=>!x.arch);c?go(c.id):add({})}
 function renderList(){
   const L=DB.list.filter(c=>!!c.arch===!!tab);
-  $('#rl').innerHTML=L.length?L.map(c=>`<div class="rw${c.id===DB.cur?' on':''}"><div class="nm">${esc(c.d.name||'Без имени')}<small>${esc([c.d.cls,c.d.race].filter(Boolean).join(' · '))}</small></div><button class="b" data-act="open" data-id="${c.id}">Открыть</button><button class="b" data-act="arch" data-id="${c.id}">${c.arch?'Вернуть':'В архив'}</button><button class="b r" data-act="del" data-id="${c.id}">${pend===c.id?'Точно?':'Удалить'}</button></div>`).join(''):'<p class="hint">Здесь пока пусто.</p>';
+  $('#rl').innerHTML=L.length?L.map(c=>`<div class="rw${c.id===DB.cur?' on':''}"><div class="nm">${esc(c.d.name||'Без имени')}${c.saved?' <em>✓ у мастера</em>':''}<small>${esc([c.d.cls,c.d.race].filter(Boolean).join(' · '))}</small></div><button class="b" data-act="open" data-id="${c.id}">Открыть</button><button class="b" data-act="arch" data-id="${c.id}">${c.arch?'Вернуть':'В архив'}</button><button class="b r" data-act="del" data-id="${c.id}">${pend===c.id?'Точно?':'Удалить'}</button></div>`).join(''):'<p class="hint">Здесь пока пусто.</p>';
   document.querySelectorAll('[data-act^=tab]').forEach(b=>b.classList.toggle('on',+b.dataset.act[3]===tab));
 }
 document.addEventListener('click',e=>{
@@ -433,7 +488,15 @@ document.addEventListener('click',e=>{
   const a=b.dataset.act,id=+b.dataset.id;
   if(a==='tab0'||a==='tab1')tab=+a[3];
   else if(a==='new')add({});
-  else if(a==='save'){persist();syncAll();flash('Сохранено ✓')}
+  else if(a==='save')askSave()
+  else if(a==='cfc')$('#cf').hidden=true
+  else if(a==='cfy'){cur().saved=1;persist();$('#cf').hidden=true;sendAll()}
+  else if(a==='cfn'){$('#cf').hidden=true;cur().arch=1;fix();persist()}
+  else if(a==='prop')propose(id)
+  else if(a==='wkp'){const t=String(S['imp_'+b.dataset.i]||'').trim().toLowerCase();if(WK[t]&&WK[t].list){WK[t].pick=+b.dataset.j;saveWK()}}
+  else if(a==='nok'||a==='nno'){const p=INB.find(x=>x.to===b.dataset.to),d=p&&diff(p);
+    if(a==='nok'&&d){d.o.forEach(z=>{d.c.d[z[0]]=z[2]});persist();if(d.c.saved)sendAll()}
+    post({act:'ack',to:b.dataset.to});INB=INB.filter(x=>x.to!==b.dataset.to);renderBell()}
   else if(a==='srv')openSrv(+b.dataset.i)
   else if(a==='wk')lookup(String(S['imp_'+b.dataset.i]||'').trim())
   else if(a==='code'){encode(DB.list.find(x=>x.id===id).d).then(t=>{$('#mc').value=t;$('#mc').select();try{navigator.clipboard.writeText(t)}catch(e){}})}
@@ -478,7 +541,7 @@ function theme(){
 }
 $('#set').innerHTML=`<h2 style="margin:0;font-size:13px;letter-spacing:.2em;color:var(--red)">НАСТРОЙКИ АНКЕТЫ</h2><label>Палитра</label><div class="pal">${Object.keys(PAL).map(n=>`<button class="b" data-pal="${n}">${n}</button>`).join('')}</div><label>Основной цвет</label><input type="color" id="c1"><label>Второй цвет (импланты, поля)</label><input type="color" id="c2"><label>Акцент (числа)</label><input type="color" id="c3"><label>Сила свечения <b id="kv"></b></label><input type="range" id="kr" min="0" max="150" step="5"><label>Эффекты</label>${Object.entries(OPT).map(([k,v])=>`<label class="row"><input type="checkbox" data-o="${k}"> ${v}</label>`).join('')}<button class="b" id="rs" style="margin-top:12px">Сбросить настройки</button>`;
 function syncUI(){$('#c1').value=ST.p;$('#c2').value=ST.s;$('#c3').value=ST.t;$('#kr').value=ST.k;$('#kv').textContent=ST.k+'%';document.querySelectorAll('[data-o]').forEach(e=>e.checked=!!ST.o[e.dataset.o])}
-function applyST(){theme();queueSync();try{localStorage.setItem('cp-set',JSON.stringify(ST))}catch(e){}}
+function applyST(){theme();try{localStorage.setItem('cp-set',JSON.stringify(ST))}catch(e){}}
 $('#gear').onclick=()=>{$('#set').hidden=!$('#set').hidden};
 $('#set').addEventListener('input',e=>{const t=e.target;
   if(t.id==='c1')ST.p=t.value;else if(t.id==='c2')ST.s=t.value;else if(t.id==='c3')ST.t=t.value;
@@ -496,7 +559,7 @@ function renderMaster(){
   if(!MU)return;
   $('#ml').innerHTML=[...DB.list].sort((a,b)=>a.arch-b.arch).map(c=>{
     const d=c.d,hm=+d.humm||100,h=Math.min(hm,d.hum===undefined||d.hum===''?hm:(+d.hum||0));
-    return `<div class="rw${c.id===DB.cur?' on':''}"><div class="nm">${esc(d.name||'Без имени')}${c.arch?' <em>[АРХИВ]</em>':''}${c.srv?' <em>[КОПИЯ]</em>':''}<small>${esc([d.cls,d.race].filter(Boolean).join(' · '))} · ур. ${lvOf(d)} · человечность ${h}/${hm}</small></div><button class="b" data-act="open" data-id="${c.id}">Открыть</button><button class="b" data-act="code" data-id="${c.id}">Код</button><button class="b" data-act="arch" data-id="${c.id}">${c.arch?'Вернуть':'В архив'}</button><button class="b r" data-act="del" data-id="${c.id}">${pend===c.id?'Точно?':'Удалить'}</button></div>`}).join('');
+    return `<div class="rw${c.id===DB.cur?' on':''}"><div class="nm">${esc(d.name||'Без имени')}${c.arch?' <em>[АРХИВ]</em>':''}${c.srv?' <em>[КОПИЯ]</em>':''}<small>${esc([d.cls,d.race].filter(Boolean).join(' · '))} · ур. ${lvOf(d)} · человечность ${h}/${hm}</small></div><button class="b" data-act="open" data-id="${c.id}">Открыть</button><button class="b" data-act="code" data-id="${c.id}">Код</button>${c.srv&&c.srv!=='code'?`<button class="b" data-act="prop" data-id="${c.id}">Предложить игроку</button>`:''}<button class="b" data-act="arch" data-id="${c.id}">${c.arch?'Вернуть':'В архив'}</button><button class="b r" data-act="del" data-id="${c.id}">${pend===c.id?'Точно?':'Удалить'}</button></div>`}).join('');
 }
 function mUnlock(){
   if($('#mk').value.trim()==='1441'){MU=1;$('#mk').value='';$('#mlock').hidden=true;$('#mopen').hidden=false;renderMaster()}
@@ -507,27 +570,27 @@ $('#mk').onkeydown=e=>{if(e.key==='Enter')mUnlock()};
 $('#mlk').onclick=()=>{MU=0;$('#mlock').hidden=false;$('#mopen').hidden=true};
 $('#mall').onclick=async()=>{const t=(await Promise.all(DB.list.map(c=>encode(c.d)))).join('\n');$('#mc').value=t;$('#mc').select();try{navigator.clipboard.writeText(t)}catch(e){}};
 const LB=['Лобная доля','Нервная система','Кровеносная система','Иммунная система','Кожа','Скелет','Руки','Ладони','Ноги','Операционная система'];
-let WK={},FILLED=new Set();const WT={};
+let WK={},FILLED=new Set(),WD=false,hp0='';const WT={};
 try{WK=JSON.parse(localStorage.getItem('cp-wk')||'{}')}catch(e){}
+Object.keys(WK).forEach(k=>{if(!WK[k]||!WK[k].list)delete WK[k]});
+const saveWK=()=>{try{localStorage.setItem('cp-wk',JSON.stringify(Object.fromEntries(Object.entries(WK).filter(a=>typeof a[1]==='object'))))}catch(e){}};
 async function wk(q){
   q=q.split('\n')[0].slice(0,60);
-  for(const L of ['/ru','']){try{
-    const B='https://cyberpunk.fandom.com'+L+'/api.php?origin=*&format=json&action=query&';
-    const r=await (await fetch(B+'list=search&srlimit=1&srsearch='+encodeURIComponent(q))).json(),h=r.query.search[0];
-    if(!h)continue;
-    let x='';
-    try{const e=await (await fetch(B+'prop=extracts&exintro=1&explaintext=1&redirects=1&exchars=420&titles='+encodeURIComponent(h.title))).json();x=(Object.values(e.query.pages)[0].extract||'').trim()}catch(e){}
-    if(!x)x=h.snippet.replace(/<[^>]+>/g,'').replace(/&quot;/g,'"').replace(/&amp;/g,'&').replace(/&#039;/g,"'");
-    return{t:h.title,x,u:'https://cyberpunk.fandom.com'+L+'/wiki/'+encodeURIComponent(h.title.replace(/ /g,'_'))};
-  }catch(e){}}
+  const re=/cyberware|implant|имплант|киберим|кибервар/i;
+  for(const L of ['/ru','']){for(const sq of [q,q+'*']){try{
+    const B='https://cyberpunk.fandom.com'+L+'/api.php?origin=*&format=json&action=query&generator=search&gsrnamespace=0&gsrlimit=6&prop=categories|extracts&cllimit=max&exintro=1&explaintext=1&exsentences=3&exlimit=6&redirects=1&gsrsearch=';
+    const r=await (await fetch(B+encodeURIComponent(sq))).json(),p=Object.values((r.query||{}).pages||{});
+    if(!p.length)continue;
+    const l=p.sort((a,b)=>a.index-b.index).map(x=>({t:x.title,x:(x.extract||'').trim(),imp:(x.categories||[]).some(c=>re.test(c.title)),u:'https://cyberpunk.fandom.com'+L+'/wiki/'+encodeURIComponent(x.title.replace(/ /g,'_'))}));
+    const ql=q.toLowerCase();
+    l.sort((a,b)=>(b.imp+(b.t.toLowerCase()===ql?2:0))-(a.imp+(a.t.toLowerCase()===ql?2:0)));
+    return l;
+  }catch(e){}}}
   return null;
 }
 async function lookup(t){
   const k=t.toLowerCase();WK[k]='…';renderImp();
-  const r=await wk(t);
-  WK[k]=r||'—';
-  try{localStorage.setItem('cp-wk',JSON.stringify(Object.fromEntries(Object.entries(WK).filter(([,v])=>typeof v==='object'))))}catch(e){}
-  renderImp();
+  const r=await wk(t);WK[k]=r?{list:r,pick:0}:'—';saveWK();renderImp();
 }
 function renderImp(){
   let h='';const now=new Set();
@@ -535,31 +598,60 @@ function renderImp(){
     const t=String(S['imp_'+i]||'').trim();if(!t)return;
     const k=t.toLowerCase(),w=WK[k];now.add(i);
     if(w===undefined&&t.length>=3){clearTimeout(WT[i]);WT[i]=setTimeout(()=>{if(WK[k]===undefined)lookup(t)},900)}
-    h+=`<div class="ic${FILLED.has(i)?'':' new'}"><b>${esc(n)}</b> · ${esc(t.split('\n')[0])}${t.length<3?'':w===undefined||w==='…'?'<p class="hint">Ищу описание в вики…</p>':w==='—'?`<p class="hint">В вики ничего не нашлось или она недоступна. <button class="b" data-act="wk" data-i="${i}">Повторить</button></p>`:`<p>${esc(w.x)}</p><p class="hint">Cyberpunk Wiki: <a href="${esc(w.u)}" target="_blank" rel="noopener">${esc(w.t)}</a> (CC BY-SA)</p>`}</div>`;
+    let b='';
+    if(t.length>=3){
+      if(w===undefined||w==='…')b='<p class="hint">Ищу в вики…</p>';
+      else if(w==='—')b=`<p class="hint">Ничего не нашлось или вики недоступна. <button class="b" data-act="wk" data-i="${i}">Повторить</button></p>`;
+      else{
+        const p=w.pick||0,it=w.list[p],o=w.list.map((v,j)=>[v,j]).filter(a=>a[1]!==p).slice(0,4);
+        b=`<p class="hint">Возможно, вы хотели найти: <b class="sg">${esc(it.t)}</b></p><p>${esc((it.x||'Краткого описания на вики нет.').slice(0,380))}</p><p class="hint">${it.imp?'':'Не похоже на имплант, проверь варианты ниже. '}<a href="${esc(it.u)}" target="_blank" rel="noopener">Cyberpunk Wiki</a> (CC BY-SA)</p>`+(o.length?`<p class="hint">Приблизительно похожие названия:</p><div class="alts">${o.map(a=>`<button class="b" data-act="wkp" data-i="${i}" data-j="${a[1]}">${esc(a[0].t)}</button>`).join('')}</div>`:'');
+      }
+    }
+    h+=`<div class="ic${FILLED.has(i)?'':' new'}"><b>${esc(n)}</b> · ${esc(t.split('\n')[0])}${b}</div>`;
   });
   FILLED=now;
   $('#ci').innerHTML=h||'<p class="hint">Впиши имплант в любую часть тела, и здесь появится описание из Cyberpunk Wiki.</p>';
 }
+document.addEventListener('focusin',e=>{if(e.target.dataset&&e.target.dataset.k==='hp')hp0=e.target.value});
+document.addEventListener('change',e=>{
+  if(!e.target.dataset||e.target.dataset.k!=='hp'||hp0==='')return;
+  const dl=(+e.target.value||0)-(+hp0||0);hp0=e.target.value;if(!dl)return;
+  const sp=document.createElement('span');sp.className='hpd '+(dl<0?'dm':'hl');sp.textContent=(dl<0?'−':'+')+Math.abs(dl);
+  e.target.parentElement.prepend(sp);setTimeout(()=>sp.remove(),1500);
+});
+const rnd=n=>{const a=new Uint32Array(1),lim=Math.floor(4294967296/n)*n;let x;do{crypto.getRandomValues(a);x=a[0]}while(x>=lim);return x%n+1};
+let RH=[];try{RH=JSON.parse(localStorage.getItem('cp-roll')||'[]')}catch(e){}
+function renderRH(){$('#dh').innerHTML=RH.map(r=>`<div class="rh ${esc(r.c)}"><span>${esc(r.t)}</span><b>${esc(r.e)}</b><i>${esc(r.v)}</i></div>`).join('')||'<p class="hint">История бросков пуста.</p>'}
+function roll(d,btn){
+  const n=Math.max(1,Math.min(20,+$('#dc').value||1)),m=+$('#dmod').value||0,rs=Array.from({length:n},()=>rnd(d)),sum=rs.reduce((a,b)=>a+b,0)+m;
+  const ex=n+'d'+d+(m?(m>0?'+':'−')+Math.abs(m):''),c=d===20&&n===1?(rs[0]===20?'crit':rs[0]===1?'fail':''):'';
+  btn.classList.add('roll');setTimeout(()=>btn.classList.remove('roll'),600);
+  const dv=$('#dv');dv.className='';let i=0;
+  const iv=setInterval(()=>{dv.textContent=rnd(d*n);if(++i>11){clearInterval(iv);dv.textContent=sum;dv.className=c;void dv.offsetWidth;dv.classList.add('pop');
+    $('#dx').textContent=ex+' = '+(n>1||m?rs.join('+')+(m?(m>0?'+':'−')+Math.abs(m):'')+' = '+sum:sum);
+    RH.unshift({t:new Date().toLocaleTimeString('ru'),e:ex,v:String(sum),c});RH=RH.slice(0,15);
+    try{localStorage.setItem('cp-roll',JSON.stringify(RH))}catch(e){}renderRH()}},45);
+}
+document.querySelector('.dk').addEventListener('click',e=>{const b=e.target.closest('.die');if(b)roll(+b.dataset.d,b)});
+renderRH();
 const BAD=[/[\w.+-]+@[\w-]+\.[\w.-]+/i,/(^|\s)@\w{3,}/,/https?:\/\/|www\.|t\.me|\S\.(com|ru|org|net|io|me|ua|by|su|рф)(?![a-zа-яё])/i,/(^|[\s,])(ул\.|улица|проспект|пр-т|переулок|шоссе|бульвар|набережная|площадь)\s+[А-Яа-яЁё.\- ]{1,30}?[, ]+\s*(д\.?|дом)?\s*\d/i,/(^|[\s,])(кв\.?|квартира|корп\.?|корпус|д\.|дом)\s*\d/i,/\b\d+\s+[A-Za-z]+\s+(street|st|avenue|ave|road|rd)\b/i];
 const bad=v=>{v=String(v);return BAD.some(r=>r.test(v))||(v.match(/\+?\d[\d\s().-]{8,}\d/g)||[]).some(m=>m.replace(/\D/g,'').length>=10)};
 let tt=0;
 function warn(){const t=$('#toast');t.textContent='🔒 Нельзя вводить личные данные: телефон, почту, ссылки, адрес и номера документов. Придумай данные для персонажа.';t.classList.add('on');clearTimeout(tt);tt=setTimeout(()=>t.classList.remove('on'),4500)}
-const API="https://script.google.com/macros/s/AKfycbwEzy_RutW38gKFDBtPBtPGowmR29b7iuAaQt_nHdV-XlyMMUnHoewDRMYe0nn-_xxB/exec";
+const API="https://script.google.com/macros/s/AKfycbzNfOjPoWK4W4xMiMTF2H6pOKzjZrlqPGnSYdp3GnUhnCTCedQbPi1DjgFAUtyV1Oxo/exec";
 let PID='';
 try{PID=localStorage.getItem('cp-pid')||'';if(!PID){PID=Math.random().toString(36).slice(2,10);localStorage.setItem('cp-pid',PID)}}catch(e){PID=Math.random().toString(36).slice(2,10)}
-const SENT={};let sy=0,SV=[];
-function queueSync(){clearTimeout(sy);sy=setTimeout(syncAll,2500)}
-async function syncAll(){
+let SV=[];
+async function post(o){try{await fetch(API,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain'},body:JSON.stringify(o)});return true}catch(e){return false}}
+async function sendAll(){
+  let ok=true;
   for(const c of DB.list){
-    if(c.srv||!(c.d.name||'').trim())continue;
-    const d={...c.d,_th:ST};delete d.photo;const j=JSON.stringify(d);
-    if(Object.values(d).some(v=>typeof v==='string'&&bad(v))){$('#sync').textContent='Лист не отправлен: в нём есть личные данные';continue}
-    if(SENT[c.id]===j)continue;
-    try{
-      await fetch(API,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain'},body:JSON.stringify({id:PID+'-'+c.id,name:d.name,data:d})});
-      SENT[c.id]=j;$('#sync').textContent='Отправлено мастеру ✓';
-    }catch(e){$('#sync').textContent='Не удалось отправить мастеру: нет связи с Google'}
+    if(!c.saved||c.arch||c.srv||!(c.d.name||'').trim())continue;
+    const d={...c.d,_th:ST};delete d.photo;
+    if(Object.values(d).some(v=>typeof v==='string'&&bad(v))){$('#sync').textContent='Лист «'+c.d.name+'» не отправлен: в нём есть личные данные';ok=false;continue}
+    ok=(await post({id:PID+'-'+c.id,name:d.name,data:d}))&&ok;
   }
+  if(ok)$('#sync').textContent='Отправлено мастеру ✓';
 }
 const inf=d=>{const hm=+d.humm||100,h=Math.min(hm,d.hum===undefined||d.hum===''?hm:(+d.hum||0));return 'ур. '+lvOf(d)+' · человечность '+h+'/'+hm};
 function renderSrv(){
@@ -583,7 +675,37 @@ $('#sgo').onclick=async()=>{
     renderSrv();
   }catch(e){st.textContent='Нет связи с сервером. Проверь доступ «Все» у веб-приложения.'}
 };
-queueSync();
+function askSave(){
+  const c=cur();
+  if(c.srv){flash('Это копия игрока, её не нужно сохранять',2800);return}
+  if(!(c.d.name||'').trim()){flash('Сначала впиши имя персонажа',2800);return}
+  $('#cf').hidden=false;
+}
+let INB=[];
+const lab=k=>{const e=document.querySelector('[data-k="'+k+'"]'),l=e&&e.parentElement.querySelector('label');return l?l.textContent.replace(/\s+/g,' ').trim():k};
+const sh=v=>{v=String(v??'').trim();return v?(v.length>50?v.slice(0,50)+'…':v):'—'};
+function diff(p){
+  const c=DB.list.find(x=>PID+'-'+x.id===p.to);if(!c||!p.data)return null;
+  const o=[];for(const k in p.data){if(k==='photo'||k==='_th')continue;if(String(p.data[k]??'')!==String(c.d[k]??''))o.push([k,c.d[k],p.data[k]])}
+  return{c,o};
+}
+function renderBell(){
+  const L=INB.map(p=>({p,d:diff(p)})).filter(x=>x.d&&x.d.o.length);
+  $('#bn').textContent=L.length||'';$('#bell').classList.toggle('has',!!L.length);
+  $('#nt').innerHTML=L.length?L.map(x=>`<div class="nti"><b>Мастер хочет изменить анкету «${esc(x.d.c.d.name||'')}»</b>${x.d.o.slice(0,10).map(z=>`<div class="df">${esc(lab(z[0]))}: <s>${esc(sh(z[1]))}</s> → <em>${esc(sh(z[2]))}</em></div>`).join('')}<button class="b" data-act="nok" data-to="${esc(x.p.to)}">Принять</button><button class="b r" data-act="nno" data-to="${esc(x.p.to)}">Отклонить</button></div>`).join(''):'<p class="hint">Новых уведомлений нет.</p>';
+}
+async function pollInbox(){
+  const ids=DB.list.filter(c=>c.saved&&!c.srv).map(c=>PID+'-'+c.id);if(!ids.length)return;
+  try{const r=await (await fetch(API+'?act=inbox&ids='+encodeURIComponent(ids.join(',')))).json();if(Array.isArray(r)){INB=r;renderBell()}}catch(e){}
+}
+async function propose(id){
+  const c=DB.list.find(x=>x.id===id),k=$('#sk').value.trim(),st=$('#sstat');
+  if(!k){st.textContent='Впиши пароль сервера';return}
+  const d={...c.d};delete d.photo;delete d._th;
+  st.textContent=(await post({act:'prop',key:k,to:c.srv,name:d.name,data:d}))?'Предложение отправлено игроку ✓':'Не удалось отправить';
+}
+$('#bell').onclick=()=>{$('#nt').hidden=!$('#nt').hidden};
+renderBell();setTimeout(pollInbox,3000);setInterval(pollInbox,60000);
 document.querySelectorAll('.grid>.p').forEach((p,i)=>p.style.animationDelay=i*.06+'s');
 $('#ph').onchange=e=>{
   const f=e.target.files[0];if(!f)return;
