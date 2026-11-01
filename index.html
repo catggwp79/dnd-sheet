@@ -87,16 +87,20 @@ button.b.r:hover{background:var(--red);color:#000;box-shadow:0 0 14px var(--red)
 .rw .nm{flex:1 1 140px;font-weight:800;letter-spacing:.06em}
 .rw small{display:block;font-weight:400;color:var(--dim);letter-spacing:0}
 .rw .b{margin:0;padding:5px 9px}
-.cw{display:grid;grid-template-columns:1fr minmax(88px,130px) 1fr;gap:8px}
+.cw{display:grid;grid-template-columns:1fr minmax(104px,140px) 1fr;gap:8px}
 .cw .col{display:flex;flex-direction:column;justify-content:space-between;gap:8px}
 .cw .sl label{color:var(--red);font-weight:600}
 .cw .sl textarea{min-height:48px;height:48px;resize:none;font-size:13px}
 .body{width:100%;height:auto;align-self:center;filter:drop-shadow(0 0 8px rgba(var(--pr),.7))}
 .body .d{fill:var(--cyan);animation:pul 2s ease-in-out infinite}
-@media(min-width:700px){.cw{grid-template-columns:1fr 150px 1fr}}
+@media(min-width:700px){.cw{grid-template-columns:1fr 190px 1fr}}
 .top{padding-right:52px}
 .body{filter:drop-shadow(0 0 8px rgba(var(--gl),calc(.35 + var(--gi)*.6)))}
 .body .o{stroke:var(--red);transition:.4s}
+.body .dt{fill:none;stroke:var(--red);stroke-width:.8;opacity:.5}
+.mk{display:flex;gap:8px;align-items:center}.mk .b{margin:0}
+.rw em{color:var(--yel);font-style:normal;font-size:11px}
+#mm{border-left-color:var(--yel)}
 .body .o.lit{stroke:var(--cyan);stroke-width:1.9;filter:url(#gl)}
 .body [data-r]:not(.o){fill:none;stroke:var(--cyan);stroke-width:1.3;stroke-linecap:round;opacity:.14;transition:opacity .4s}
 .body [data-r].lit:not(.o){opacity:1;filter:url(#gl);animation:pul 2.2s ease-in-out infinite}
@@ -216,17 +220,25 @@ body{background:radial-gradient(ellipse at 50% 0,var(--bgt) 0,var(--bg) 60%) fix
 
   <section class="p full">
     <h2>Киберимпланты</h2>
-    <div class="cw"><div class="col"><div class="sl"><label>Лобная доля</label><textarea data-k="imp_0"></textarea></div><div class="sl"><label>Кровеносная система</label><textarea data-k="imp_2"></textarea></div><div class="sl"><label>Иммунная система</label><textarea data-k="imp_3"></textarea></div><div class="sl"><label>Нервная система</label><textarea data-k="imp_1"></textarea></div><div class="sl"><label>Кожа</label><textarea data-k="imp_4"></textarea></div></div><svg class="body" viewBox="0 0 100 262" aria-hidden="true"><defs><linearGradient id="bgf" x1="0" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color:var(--red)" stop-opacity=".55"/><stop offset="1" style="stop-color:var(--redd)" stop-opacity=".25"/></linearGradient><filter id="gl" filterUnits="userSpaceOnUse" x="0" y="0" width="100" height="262"><feGaussianBlur stdDeviation="1.6" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
-<g class="o" data-r="imp_4" fill="url(#bgf)" stroke-width="1.2" stroke-linejoin="round"><circle cx="50" cy="22" r="14"/><path d="M44 36h12v9H44z"/><path d="M32 46Q50 41 68 46L72 112Q50 121 28 112Z"/><path d="M30 48L18 54L10 124L19 127L28 84Z"/><path d="M70 48L82 54L90 124L81 127L72 84Z"/><path d="M30 112L49 117L47 252L33 252L31 190Z"/><path d="M70 112L51 117L53 252L67 252L69 190Z"/></g>
-<ellipse data-r="imp_0" class="fl" cx="50" cy="13" rx="8" ry="4.5"/>
-<ellipse data-r="imp_9" class="fl" cx="50" cy="25" rx="9.5" ry="7.5"/><path data-r="imp_9" d="M50 18V32M43 23q3 3 7 0M50 28q4 2 7-1"/>
-<path data-r="imp_2" class="fl" d="M55 70C46 63 49 57 55 61C61 57 64 63 55 70Z"/><path data-r="imp_2" d="M55 57V47M50 70L47 110M60 70L64 110"/>
-<circle data-r="imp_3" class="fl" cx="41" cy="56" r="3"/><circle data-r="imp_3" class="fl" cx="62" cy="50" r="2.5"/><circle data-r="imp_3" class="fl" cx="63" cy="92" r="3.5"/>
-<path data-r="imp_1" d="M50 38V112M50 54L33 62M50 54L67 62M50 112L41 160M50 112L59 160M26 58L16 112M74 58L84 112"/>
-<path data-r="imp_5" d="M40 52Q50 57 60 52M39 60Q50 66 61 60M39 68Q50 74 61 68M40 76Q50 82 60 76M41 84Q50 89 59 84M38 106Q50 112 62 106"/>
-<path data-r="imp_6" stroke-width="2.2" d="M24 56L14 118M76 56L86 118"/>
-<circle data-r="imp_7" class="fl" cx="14" cy="132" r="5"/><circle data-r="imp_7" class="fl" cx="86" cy="132" r="5"/>
-<path data-r="imp_8" stroke-width="2.2" d="M40 122L41 246M60 122L59 246"/></svg><div class="col"><div class="sl"><label>Операционная система</label><textarea data-k="imp_9"></textarea></div><div class="sl"><label>Скелет</label><textarea data-k="imp_5"></textarea></div><div class="sl"><label>Ладони</label><textarea data-k="imp_7"></textarea></div><div class="sl"><label>Руки</label><textarea data-k="imp_6"></textarea></div><div class="sl"><label>Ноги</label><textarea data-k="imp_8"></textarea></div></div></div>
+    <div class="cw"><div class="col"><div class="sl"><label>Лобная доля</label><textarea data-k="imp_0"></textarea></div><div class="sl"><label>Кровеносная система</label><textarea data-k="imp_2"></textarea></div><div class="sl"><label>Иммунная система</label><textarea data-k="imp_3"></textarea></div><div class="sl"><label>Нервная система</label><textarea data-k="imp_1"></textarea></div><div class="sl"><label>Кожа</label><textarea data-k="imp_4"></textarea></div></div><svg class="body" viewBox="0 0 120 300" aria-hidden="true"><defs>
+<linearGradient id="bgf" x1="0" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color:var(--red)" stop-opacity=".55"/><stop offset="1" style="stop-color:var(--redd)" stop-opacity=".25"/></linearGradient>
+<filter id="gl" filterUnits="userSpaceOnUse" x="-5" y="-5" width="130" height="310"><feGaussianBlur stdDeviation="1.6" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+<g id="bL"><path d="M34 128C32 150 33 176 37 196C38 206 37 214 38 226C39 242 42 258 43 270L41 281C38 285 34 287 33 292L51 292L53 281L53 270C54 254 55 240 55 226C55 214 54 206 55 196C57 176 59 158 60 143L40 128Z"/><path d="M56 44C50 47 43 48 37 51L33 56L33 70C34 84 36 98 37 110C36 118 34 126 34 133L60 143V44Z"/><path d="M30 53C23 55 20 62 19 72L16 98C15 108 13 122 12 136L8 148C6 154 7 160 8 166L13 167L16 160L18 168L22 167L23 158L26 160L28 150L29 138C30 124 32 112 33 98L34 76C34 66 33 58 30 53Z"/></g>
+<g id="dL"><path d="M60 68C52 74 42 72 37 66M60 84H52M60 96H52M60 108H53M57 49L40 53M40 198Q46 203 53 198M36 124Q48 134 60 138M21 100Q24 104 28 100"/></g>
+<path id="nvL" d="M60 56L40 62L26 72L19 100L11 142M60 136L50 192L45 264"/>
+<path id="rbL" d="M60 62Q48 66 42 62M60 70Q47 75 41 70M60 78Q47 84 41 78M60 86Q48 92 42 86M60 94Q50 99 44 94M58 54L42 52M60 138L44 130"/>
+<path id="arL" d="M32 60L22 100L14 138"/><ellipse id="pmL" cx="14" cy="154" rx="4.5" ry="7"/><path id="lgL" d="M45 142L41 200L45 264"/></defs>
+<g class="o" data-r="imp_4" fill="url(#bgf)" stroke-width="1.2" stroke-linejoin="round"><path d="M48 22C48 11 53 6 60 6S72 11 72 22C72 29 69 36 64 40L63 44H57L56 40C51 36 48 29 48 22Z"/><use href="#bL"/><use href="#bL" transform="matrix(-1 0 0 1 120 0)"/></g>
+<g class="dt"><use href="#dL"/><use href="#dL" transform="matrix(-1 0 0 1 120 0)"/></g>
+<ellipse data-r="imp_0" class="fl" cx="60" cy="14" rx="9" ry="5"/>
+<ellipse data-r="imp_9" class="fl" cx="60" cy="25" rx="10" ry="8"/><path data-r="imp_9" d="M60 18V32M52 23q4 3 8 0M60 28q4 2 8-1M54 29q3 2 6 1"/>
+<path data-r="imp_2" class="fl" d="M66 90C57 83 59 74 66 78C73 74 75 83 66 90Z"/><path data-r="imp_2" d="M66 75V56H60M66 90L62 132M70 88L76 128"/>
+<circle data-r="imp_3" class="fl" cx="60" cy="60" r="3"/><circle data-r="imp_3" class="fl" cx="44" cy="58" r="2.5"/><circle data-r="imp_3" class="fl" cx="76" cy="58" r="2.5"/><circle data-r="imp_3" class="fl" cx="77" cy="104" r="4"/>
+<path data-r="imp_1" d="M60 44V138"/><use href="#nvL" data-r="imp_1"/><use href="#nvL" data-r="imp_1" transform="matrix(-1 0 0 1 120 0)"/>
+<use href="#rbL" data-r="imp_5"/><use href="#rbL" data-r="imp_5" transform="matrix(-1 0 0 1 120 0)"/>
+<use href="#arL" data-r="imp_6" stroke-width="2.4"/><use href="#arL" data-r="imp_6" stroke-width="2.4" transform="matrix(-1 0 0 1 120 0)"/>
+<use href="#pmL" data-r="imp_7" class="fl"/><use href="#pmL" data-r="imp_7" class="fl" transform="matrix(-1 0 0 1 120 0)"/>
+<use href="#lgL" data-r="imp_8" stroke-width="2.4"/><use href="#lgL" data-r="imp_8" stroke-width="2.4" transform="matrix(-1 0 0 1 120 0)"/></svg><div class="col"><div class="sl"><label>Операционная система</label><textarea data-k="imp_9"></textarea></div><div class="sl"><label>Скелет</label><textarea data-k="imp_5"></textarea></div><div class="sl"><label>Ладони</label><textarea data-k="imp_7"></textarea></div><div class="sl"><label>Руки</label><textarea data-k="imp_6"></textarea></div><div class="sl"><label>Ноги</label><textarea data-k="imp_8"></textarea></div></div></div>
   </section>
 
   <section class="p">
@@ -250,6 +262,16 @@ body{background:radial-gradient(ellipse at 50% 0,var(--bgt) 0,var(--bg) 60%) fix
     <button class="b" id="im">Добавить по коду</button>
     <button class="b" id="dl">Скачать копию файлом</button>
     <textarea id="io" style="min-height:70px;margin-top:8px" placeholder="Нажми «Получить код» и отправь его мастеру. Чтобы посмотреть чужого персонажа — вставь код сюда и нажми «Добавить по коду»."></textarea>
+  </section>
+  <section class="p full" id="mm">
+    <h2>Мастер-меню</h2>
+    <div id="mlock"><div class="mk"><input type="password" inputmode="numeric" id="mk" placeholder="Код мастера"><button class="b" id="mgo">Войти</button></div><span id="mst" class="hint"></span></div>
+    <div id="mopen" hidden>
+      <p class="hint" style="margin:0 0 8px">Здесь все персонажи, сохранённые в этом браузере, включая архив. Чтобы увидеть героя друга, добавь его по коду в блоке выше.</p>
+      <div class="tabs"><button class="b" id="mall">Коды всех персонажей</button><button class="b r" id="mlk">Закрыть меню</button></div>
+      <div id="ml"></div>
+      <textarea id="mc" style="min-height:70px;margin-top:8px" placeholder="Здесь появится код выбранного персонажа"></textarea>
+    </div>
   </section>
 </div>
 </div>
@@ -285,7 +307,7 @@ function showPhoto(){
   p.classList.toggle('on',!!S.photo);
 }
 function recalc(){
-  renderList();
+  renderList();renderMaster();
   document.querySelectorAll('[data-r]').forEach(e=>e.classList.toggle('lit',!!String(S[e.dataset.r]||'').trim()));
   const XP=[0,300,900,2700,6500,14000,23000,34000,48000,64000,85000,100000,120000,140000,165000,195000,225000,265000,305000,355000];
   const xp=Math.max(0,+S.xp||0);let lvl=1;XP.forEach((t,i)=>{if(xp>=t)lvl=i+1});
@@ -354,7 +376,8 @@ document.addEventListener('click',e=>{
   if(a==='tab0'||a==='tab1')tab=+a[3];
   else if(a==='new')add({});
   else if(a==='save'){persist();flash('Сохранено ✓')}
-  else if(a==='open')go(id);
+  else if(a==='code'){encode(DB.list.find(x=>x.id===id).d).then(t=>{$('#mc').value=t;$('#mc').select();try{navigator.clipboard.writeText(t)}catch(e){}})}
+  else if(a==='open'){go(id);scrollTo({top:0,behavior:'smooth'})}
   else if(a==='arch'){const c=DB.list.find(x=>x.id===id);c.arch=c.arch?0:1;if(c.arch&&id===DB.cur)fix();persist()}
   else if(a==='del'){
     if(pend!==id){pend=id;setTimeout(()=>{if(pend===id){pend=0;renderList()}},3000)}
@@ -401,6 +424,23 @@ $('#set').addEventListener('click',e=>{const n=e.target.dataset.pal;
   if(n){[ST.p,ST.s,ST.t]=PAL[n];applyST();syncUI()}
   if(e.target.id==='rs'){ST={...DEF,o:{...DEF.o}};applyST();syncUI()}});
 theme();syncUI();
+let MU=0;
+const XPT=[0,300,900,2700,6500,14000,23000,34000,48000,64000,85000,100000,120000,140000,165000,195000,225000,265000,305000,355000];
+const lvOf=d=>{let l=1;XPT.forEach((t,i)=>{if((+d.xp||0)>=t)l=i+1});return l};
+function renderMaster(){
+  if(!MU)return;
+  $('#ml').innerHTML=[...DB.list].sort((a,b)=>a.arch-b.arch).map(c=>{
+    const d=c.d,hm=+d.humm||100,h=Math.min(hm,d.hum===undefined||d.hum===''?hm:(+d.hum||0));
+    return `<div class="rw${c.id===DB.cur?' on':''}"><div class="nm">${esc(d.name||'Без имени')}${c.arch?' <em>[АРХИВ]</em>':''}<small>${esc([d.cls,d.race].filter(Boolean).join(' · '))} · ур. ${lvOf(d)} · человечность ${h}/${hm}</small></div><button class="b" data-act="open" data-id="${c.id}">Открыть</button><button class="b" data-act="code" data-id="${c.id}">Код</button><button class="b" data-act="arch" data-id="${c.id}">${c.arch?'Вернуть':'В архив'}</button><button class="b r" data-act="del" data-id="${c.id}">${pend===c.id?'Точно?':'Удалить'}</button></div>`}).join('');
+}
+function mUnlock(){
+  if($('#mk').value.trim()==='1441'){MU=1;$('#mk').value='';$('#mlock').hidden=true;$('#mopen').hidden=false;renderMaster()}
+  else{$('#mst').textContent='Неверный код';setTimeout(()=>$('#mst').textContent='',2000)}
+}
+$('#mgo').onclick=mUnlock;
+$('#mk').onkeydown=e=>{if(e.key==='Enter')mUnlock()};
+$('#mlk').onclick=()=>{MU=0;$('#mlock').hidden=false;$('#mopen').hidden=true};
+$('#mall').onclick=async()=>{const t=(await Promise.all(DB.list.map(c=>encode(c.d)))).join('\n');$('#mc').value=t;$('#mc').select();try{navigator.clipboard.writeText(t)}catch(e){}};
 document.querySelectorAll('.grid>.p').forEach((p,i)=>p.style.animationDelay=i*.06+'s');
 $('#ph').onchange=e=>{
   const f=e.target.files[0];if(!f)return;
