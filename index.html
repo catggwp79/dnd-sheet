@@ -95,15 +95,17 @@ button.b.r:hover{background:var(--red);color:#000;box-shadow:0 0 14px var(--red)
 .body .d{fill:var(--cyan);animation:pul 2s ease-in-out infinite}
 @media(min-width:700px){.cw{grid-template-columns:1fr 190px 1fr}}
 .top{padding-right:52px}
+#toast{position:fixed;left:50%;bottom:calc(env(safe-area-inset-bottom,0px) + 16px);transform:translate(-50%,20px);width:min(420px,calc(100vw - 24px));z-index:90;background:rgba(18,10,24,.97);border:1px solid var(--yel);color:var(--yel);padding:10px 12px;font-size:13px;opacity:0;pointer-events:none;transition:.3s}
+#toast.on{opacity:1;transform:translate(-50%,0)}
 .body{filter:drop-shadow(0 0 8px rgba(var(--gl),calc(.35 + var(--gi)*.6)))}
 .body .o{stroke:var(--red);transition:.4s}
 .body .dt{fill:none;stroke:var(--red);stroke-width:.8;opacity:.5}
 .mk{display:flex;gap:8px;align-items:center}.mk .b{margin:0}
 .rw em{color:var(--yel);font-style:normal;font-size:11px}
 #mm{border-left-color:var(--yel)}
-.body .o.lit{stroke:var(--cyan);stroke-width:1.9;filter:url(#gl)}
+.body .o.lit{stroke:var(--cyan);stroke-width:1.9;filter:url(#gl);animation:ignb .9s linear}
 .body [data-r]:not(.o){fill:none;stroke:var(--cyan);stroke-width:1.3;stroke-linecap:round;opacity:.14;transition:opacity .4s}
-.body [data-r].lit:not(.o){opacity:1;filter:url(#gl);animation:pul 2.2s ease-in-out infinite}
+.body [data-r].lit:not(.o){opacity:1;filter:url(#gl);animation:ign .9s linear,pul 2.2s ease-in-out .9s infinite}
 .body .fl.lit{fill:rgba(var(--sr),.45)}
 h1{text-shadow:0 0 calc(8px*var(--k)) rgba(var(--gl),.9),0 0 calc(24px*var(--k)) rgba(var(--gl),var(--gi))}
 .p{box-shadow:inset 0 0 calc(14px + var(--hr)*26px) rgba(var(--gl),calc(var(--gi)*.45))}
@@ -115,8 +117,11 @@ body{background:radial-gradient(ellipse at 50% 0,var(--bgt) 0,var(--bg) 60%) fix
 .no-vg #vg,.no-scan body::before,.no-bar body::after{display:none}
 .no-flick h1{animation:none}
 .no-rise .p{animation:none}
-#gear{position:fixed;top:calc(env(safe-area-inset-top,0px) + 10px);right:10px;z-index:70;width:42px;height:42px;border:1px solid var(--cyan);background:rgba(11,7,16,.88);color:var(--cyan);font-size:22px;cursor:pointer;text-shadow:0 0 8px var(--cyan);transition:transform .4s}
-#gear:hover{transform:rotate(60deg)}
+#gear{position:fixed;top:calc(env(safe-area-inset-top,0px) + 10px);right:10px;z-index:70;width:42px;height:42px;border:1px solid var(--cyan);background:rgba(11,7,16,.88);color:var(--cyan);cursor:pointer;transition:box-shadow .3s}
+#gear{display:flex;align-items:center;justify-content:center;padding:0}
+#gear svg{filter:drop-shadow(0 0 4px var(--cyan));transition:transform .6s}
+#gear:hover svg{transform:rotate(90deg)}
+#gear:hover{box-shadow:0 0 12px rgba(var(--sr),.6)}
 #set{position:fixed;top:calc(env(safe-area-inset-top,0px) + 58px);right:10px;z-index:70;width:min(330px,calc(100vw - 20px));max-height:calc(100vh - 90px);overflow:auto;background:rgba(18,10,24,.97);border:1px solid var(--red);padding:12px;animation:rise .25s both}
 #set[hidden]{display:none}
 #set label{margin-top:10px}
@@ -125,6 +130,33 @@ body{background:radial-gradient(ellipse at 50% 0,var(--bgt) 0,var(--bg) 60%) fix
 #set input[type=color]{height:34px;padding:0;border:1px solid var(--cyan);background:none}
 #set input[type=range]{padding:0;border:0;background:none;accent-color:var(--cyan)}
 .pal{display:flex;flex-wrap:wrap;gap:6px}.pal .b{margin:0;padding:5px 8px}
+@keyframes ign{0%{opacity:.14}8%{opacity:1}14%{opacity:.2}22%{opacity:.95}30%{opacity:.3}42%{opacity:1}55%{opacity:.6}100%{opacity:1}}
+@keyframes ignb{0%{opacity:.55}12%{opacity:1}20%{opacity:.6}35%{opacity:1}50%{opacity:.75}100%{opacity:1}}
+@keyframes lamp{0%{background:rgba(var(--sr),0)}15%{background:rgba(var(--sr),.5)}25%{background:rgba(var(--sr),.05)}45%{background:rgba(var(--sr),.4)}100%{background:rgba(var(--sr),.06)}}
+.sl textarea.on{border-bottom-color:var(--yel);box-shadow:0 2px 12px -3px var(--yel);animation:lamp .9s}
+input[readonly]{opacity:.65}
+.ci{margin-top:14px;display:grid;gap:8px}
+.ic{border:1px solid var(--redd);border-left:3px solid var(--cyan);padding:8px 10px;background:rgba(var(--sr),.05);font-size:13px}
+.ic b{color:var(--red);letter-spacing:.08em;text-transform:uppercase;font-size:11px}
+.ic .hc{float:right;color:var(--yel);font-weight:800}
+.ic p{margin:4px 0 0}
+.ic a{color:var(--cyan)}
+.ic.new{animation:rise .5s both}
+#dn{display:none;width:100%;font-size:20px;letter-spacing:.2em;color:var(--red);text-transform:uppercase}
+@keyframes dbl{0%,100%{opacity:.12}50%{opacity:.9}}
+.dead .grid>.p,.dead .badges{opacity:.07;filter:grayscale(1);transition:opacity .8s}
+.dead .grid>.p:hover,.dead .grid>.p:focus-within{opacity:.7}
+.dead h1{animation:dbl 5s ease-in-out infinite}
+.dead #dn{display:block;animation:dbl 5s ease-in-out .9s infinite}
+.dead #vg{opacity:.2}
+.a .n{font-size:9.5px;letter-spacing:.05em}
+.dsb{all:unset;width:18px;height:18px;border:1px solid var(--cyan);border-radius:50%;cursor:pointer;display:inline-block;margin:4px 8px 0 0;transition:.2s}
+.dsb.f{border-color:var(--red)}
+.dsb.s1{box-shadow:0 0 8px var(--cyan)}.dsb.f.s1{box-shadow:0 0 8px var(--red)}
+.at{display:grid;grid-template-columns:2fr 1fr 1.4fr;gap:6px}
+.at input{padding:5px 4px;font-size:13px}
+.coins{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin-bottom:8px}
+.coins input{text-align:center;padding:5px 2px}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
 #pv{aspect-ratio:3/4;max-width:240px;margin:0 auto;border:1px solid var(--cyan);background:#0b0710 center/cover no-repeat;display:flex;align-items:center;justify-content:center;color:var(--cyan);letter-spacing:.2em;font-weight:800;cursor:pointer;clip-path:polygon(0 0,calc(100% - 18px) 0,100% 18px,100% 100%,18px 100%,0 calc(100% - 18px))}
 #pv.on span{display:none}
@@ -135,13 +167,15 @@ body{background:radial-gradient(ellipse at 50% 0,var(--bgt) 0,var(--bg) 60%) fix
 </style>
 </head>
 <body>
+<div id="toast"></div>
 <div id="vg"></div>
-<button id="gear" aria-label="Настройки">⚙</button>
+<button id="gear" aria-label="Настройки"><svg viewBox="-12.5 -12.5 25 25" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" aria-hidden="true"><path d="M-1.98 -7.96 L-1.56 -11.09 L1.56 -11.09 L1.98 -7.96 L4.22 -7.03 L6.74 -8.94 L8.94 -6.74 L7.03 -4.22 L7.96 -1.98 L11.09 -1.56 L11.09 1.56 L7.96 1.98 L7.03 4.22 L8.94 6.74 L6.74 8.94 L4.22 7.03 L1.98 7.96 L1.56 11.09 L-1.56 11.09 L-1.98 7.96 L-4.22 7.03 L-6.74 8.94 L-8.94 6.74 L-7.03 4.22 L-7.96 1.98 L-11.09 1.56 L-11.09 -1.56 L-7.96 -1.98 L-7.03 -4.22 L-8.94 -6.74 L-6.74 -8.94 L-4.22 -7.03Z"/><circle r="3.6"/><circle r="1" fill="currentColor" stroke="none"/></svg></button>
 <div id="set" hidden></div>
 <div class="wrap">
 <div id="nojs">⚠ Расчёты, шкала человечности и уровень не работают? Открой файл в браузере (Chrome или Safari), а не в просмотре внутри мессенджера.</div>
 <div class="top">
   <h1>Лист персонажа<small>D&amp;D 5E // НОЧНОЙ ГОРОД</small></h1>
+  <div id="dn"></div>
   <div class="badges">
     <div class="badge"><b id="lv">1</b> <span>УРОВЕНЬ</span></div>
     <div class="badge m"><b id="pb">+2</b> <span>БОНУС МАСТЕРСТВА</span></div>
@@ -153,6 +187,8 @@ body{background:radial-gradient(ellipse at 50% 0,var(--bgt) 0,var(--bg) 60%) fix
     <h2>Мои персонажи</h2>
     <div class="tabs"><button class="b on" data-act="tab0">Активные</button><button class="b" data-act="tab1">Архив</button><button class="b" data-act="new">＋ Новый</button><button class="b" data-act="save">Сохранить</button><span id="st"></span></div>
     <div id="rl"></div>
+    <p class="hint" id="sync">Персонаж с именем автоматически отправляется мастеру (без фото).</p>
+    <p class="hint">🔒 Не вводи настоящие имена, телефоны, почту, ссылки и адреса: такие данные сайт не принимает.</p>
   </section>
 
   <section class="p">
@@ -162,7 +198,7 @@ body{background:radial-gradient(ellipse at 50% 0,var(--bgt) 0,var(--bg) 60%) fix
       <div><label>Класс</label><input data-k="cls"></div>
       <div><label>Раса</label><input data-k="race"></div>
       <div><label>Уровень (авто)</label><div id="lvd" style="font-size:20px;font-weight:800;color:var(--yel);padding:3px 0;border-bottom:1px solid var(--redd)">1</div></div>
-      <div><label>Опыт <span id="nx"></span></label><input type="number" min="0" placeholder="0" data-k="xp"></div>
+      <div><label>Очки опыта <span id="nx"></span></label><input type="number" min="0" placeholder="0" data-k="xp"></div>
       <div><label>Предыстория</label><input data-k="bg"></div>
       <div><label>Мировоззрение</label><input data-k="al"></div>
       <div class="w"><label class="eb">€$ Деньги</label><input data-k="money"></div>
@@ -190,32 +226,34 @@ body{background:radial-gradient(ellipse at 50% 0,var(--bgt) 0,var(--bg) 60%) fix
       <div><label>Скорость</label><input data-k="spd"></div>
     </div>
     <div class="big">
-      <div><label>Макс. ХП</label><input type="number" data-k="hpm"></div>
-      <div><label>Текущие ХП</label><input type="number" data-k="hp"></div>
-      <div><label>Врем. ХП</label><input type="number" data-k="thp"></div>
+      <div><label>Максимум хитов</label><input type="number" data-k="hpm"></div>
+      <div><label>Текущие хиты</label><input type="number" data-k="hp"></div>
+      <div><label>Временные хиты</label><input type="number" data-k="thp"></div>
     </div>
     <div class="big">
-      <div><label>Кости хитов</label><input data-k="hd"></div>
-      <div><label>Пасс. внимат.</label><div class="v" id="pp">10</div></div>
+      <div><label>Кость хитов</label><input data-k="hd"></div>
+      <div><label>Пассивная мудрость (вним.)</label><div class="v" id="pp">10</div></div>
       <div><label>Вдохновение</label><input data-k="insp"></div>
     </div>
+    <div class="f" style="margin-top:8px"><div><label>Спасброски от смерти: успехи</label><button class="dsb" data-s="ds_0"></button><button class="dsb" data-s="ds_1"></button><button class="dsb" data-s="ds_2"></button></div><div><label>Провалы</label><button class="dsb f" data-s="df_0"></button><button class="dsb f" data-s="df_1"></button><button class="dsb f" data-s="df_2"></button></div></div>
   </section>
 
   <section class="p">
     <h2>Характеристики</h2>
-    <div class="ab" id="abs"><div class="a"><div class="n">СИЛ</div><div class="mod" id="m_str">+0</div><input type="number" value="10" data-k="str"><div class="sv"><button class="d sk-d" style="all:unset;width:12px;height:12px;border:1px solid var(--cyan);transform:rotate(45deg) scale(.8);cursor:pointer" data-s="sv_str"></button><b id="sv_str">+0</b></div></div><div class="a"><div class="n">ЛОВ</div><div class="mod" id="m_dex">+0</div><input type="number" value="10" data-k="dex"><div class="sv"><button class="d sk-d" style="all:unset;width:12px;height:12px;border:1px solid var(--cyan);transform:rotate(45deg) scale(.8);cursor:pointer" data-s="sv_dex"></button><b id="sv_dex">+0</b></div></div><div class="a"><div class="n">ТЕЛ</div><div class="mod" id="m_con">+0</div><input type="number" value="10" data-k="con"><div class="sv"><button class="d sk-d" style="all:unset;width:12px;height:12px;border:1px solid var(--cyan);transform:rotate(45deg) scale(.8);cursor:pointer" data-s="sv_con"></button><b id="sv_con">+0</b></div></div><div class="a"><div class="n">ИНТ</div><div class="mod" id="m_int">+0</div><input type="number" value="10" data-k="int"><div class="sv"><button class="d sk-d" style="all:unset;width:12px;height:12px;border:1px solid var(--cyan);transform:rotate(45deg) scale(.8);cursor:pointer" data-s="sv_int"></button><b id="sv_int">+0</b></div></div><div class="a"><div class="n">МУД</div><div class="mod" id="m_wis">+0</div><input type="number" value="10" data-k="wis"><div class="sv"><button class="d sk-d" style="all:unset;width:12px;height:12px;border:1px solid var(--cyan);transform:rotate(45deg) scale(.8);cursor:pointer" data-s="sv_wis"></button><b id="sv_wis">+0</b></div></div><div class="a"><div class="n">ХАР</div><div class="mod" id="m_cha">+0</div><input type="number" value="10" data-k="cha"><div class="sv"><button class="d sk-d" style="all:unset;width:12px;height:12px;border:1px solid var(--cyan);transform:rotate(45deg) scale(.8);cursor:pointer" data-s="sv_cha"></button><b id="sv_cha">+0</b></div></div></div>
+    <div class="ab" id="abs"><div class="a"><div class="n">СИЛА</div><div class="mod" id="m_str">+0</div><input type="number" value="10" data-k="str"><div class="sv"><button class="d sk-d" style="all:unset;width:12px;height:12px;border:1px solid var(--cyan);transform:rotate(45deg) scale(.8);cursor:pointer" data-s="sv_str"></button><b id="sv_str">+0</b></div></div><div class="a"><div class="n">ЛОВКОСТЬ</div><div class="mod" id="m_dex">+0</div><input type="number" value="10" data-k="dex"><div class="sv"><button class="d sk-d" style="all:unset;width:12px;height:12px;border:1px solid var(--cyan);transform:rotate(45deg) scale(.8);cursor:pointer" data-s="sv_dex"></button><b id="sv_dex">+0</b></div></div><div class="a"><div class="n">ТЕЛОСЛОЖЕНИЕ</div><div class="mod" id="m_con">+0</div><input type="number" value="10" data-k="con"><div class="sv"><button class="d sk-d" style="all:unset;width:12px;height:12px;border:1px solid var(--cyan);transform:rotate(45deg) scale(.8);cursor:pointer" data-s="sv_con"></button><b id="sv_con">+0</b></div></div><div class="a"><div class="n">ИНТЕЛЛЕКТ</div><div class="mod" id="m_int">+0</div><input type="number" value="10" data-k="int"><div class="sv"><button class="d sk-d" style="all:unset;width:12px;height:12px;border:1px solid var(--cyan);transform:rotate(45deg) scale(.8);cursor:pointer" data-s="sv_int"></button><b id="sv_int">+0</b></div></div><div class="a"><div class="n">МУДРОСТЬ</div><div class="mod" id="m_wis">+0</div><input type="number" value="10" data-k="wis"><div class="sv"><button class="d sk-d" style="all:unset;width:12px;height:12px;border:1px solid var(--cyan);transform:rotate(45deg) scale(.8);cursor:pointer" data-s="sv_wis"></button><b id="sv_wis">+0</b></div></div><div class="a"><div class="n">ХАРИЗМА</div><div class="mod" id="m_cha">+0</div><input type="number" value="10" data-k="cha"><div class="sv"><button class="d sk-d" style="all:unset;width:12px;height:12px;border:1px solid var(--cyan);transform:rotate(45deg) scale(.8);cursor:pointer" data-s="sv_cha"></button><b id="sv_cha">+0</b></div></div></div>
     <p class="hint">Ромб у спасброска — владение.</p>
   </section>
 
   <section class="p">
     <h2>Навыки</h2>
-    <div id="sks"><div class="sk"><button class="d" data-s="sk_0"></button><span class="v" id="skv_0">+0</span><span>Акробатика</span><em>DEX</em></div><div class="sk"><button class="d" data-s="sk_1"></button><span class="v" id="skv_1">+0</span><span>Анализ</span><em>INT</em></div><div class="sk"><button class="d" data-s="sk_2"></button><span class="v" id="skv_2">+0</span><span>Атлетика</span><em>STR</em></div><div class="sk"><button class="d" data-s="sk_3"></button><span class="v" id="skv_3">+0</span><span>Внимательность</span><em>WIS</em></div><div class="sk"><button class="d" data-s="sk_4"></button><span class="v" id="skv_4">+0</span><span>Выживание</span><em>WIS</em></div><div class="sk"><button class="d" data-s="sk_5"></button><span class="v" id="skv_5">+0</span><span>Выступление</span><em>CHA</em></div><div class="sk"><button class="d" data-s="sk_6"></button><span class="v" id="skv_6">+0</span><span>Запугивание</span><em>CHA</em></div><div class="sk"><button class="d" data-s="sk_7"></button><span class="v" id="skv_7">+0</span><span>История</span><em>INT</em></div><div class="sk"><button class="d" data-s="sk_8"></button><span class="v" id="skv_8">+0</span><span>Ловкость рук</span><em>DEX</em></div><div class="sk"><button class="d" data-s="sk_9"></button><span class="v" id="skv_9">+0</span><span>Магия</span><em>INT</em></div><div class="sk"><button class="d" data-s="sk_10"></button><span class="v" id="skv_10">+0</span><span>Медицина</span><em>WIS</em></div><div class="sk"><button class="d" data-s="sk_11"></button><span class="v" id="skv_11">+0</span><span>Обман</span><em>CHA</em></div><div class="sk"><button class="d" data-s="sk_12"></button><span class="v" id="skv_12">+0</span><span>Природа</span><em>INT</em></div><div class="sk"><button class="d" data-s="sk_13"></button><span class="v" id="skv_13">+0</span><span>Проницательность</span><em>WIS</em></div><div class="sk"><button class="d" data-s="sk_14"></button><span class="v" id="skv_14">+0</span><span>Религия</span><em>INT</em></div><div class="sk"><button class="d" data-s="sk_15"></button><span class="v" id="skv_15">+0</span><span>Скрытность</span><em>DEX</em></div><div class="sk"><button class="d" data-s="sk_16"></button><span class="v" id="skv_16">+0</span><span>Убеждение</span><em>CHA</em></div><div class="sk"><button class="d" data-s="sk_17"></button><span class="v" id="skv_17">+0</span><span>Уход за животными</span><em>WIS</em></div></div>
+    <div id="sks"><div class="sk"><button class="d" data-s="sk_0"></button><span class="v" id="skv_0">+0</span><span>Акробатика</span><em>(Лов)</em></div><div class="sk"><button class="d" data-s="sk_1"></button><span class="v" id="skv_1">+0</span><span>Анализ</span><em>(Инт)</em></div><div class="sk"><button class="d" data-s="sk_2"></button><span class="v" id="skv_2">+0</span><span>Атлетика</span><em>(Сил)</em></div><div class="sk"><button class="d" data-s="sk_3"></button><span class="v" id="skv_3">+0</span><span>Внимательность</span><em>(Мдр)</em></div><div class="sk"><button class="d" data-s="sk_4"></button><span class="v" id="skv_4">+0</span><span>Выживание</span><em>(Мдр)</em></div><div class="sk"><button class="d" data-s="sk_5"></button><span class="v" id="skv_5">+0</span><span>Выступление</span><em>(Хар)</em></div><div class="sk"><button class="d" data-s="sk_6"></button><span class="v" id="skv_6">+0</span><span>Запугивание</span><em>(Хар)</em></div><div class="sk"><button class="d" data-s="sk_7"></button><span class="v" id="skv_7">+0</span><span>История</span><em>(Инт)</em></div><div class="sk"><button class="d" data-s="sk_8"></button><span class="v" id="skv_8">+0</span><span>Ловкость рук</span><em>(Лов)</em></div><div class="sk"><button class="d" data-s="sk_9"></button><span class="v" id="skv_9">+0</span><span>Магия</span><em>(Инт)</em></div><div class="sk"><button class="d" data-s="sk_10"></button><span class="v" id="skv_10">+0</span><span>Медицина</span><em>(Мдр)</em></div><div class="sk"><button class="d" data-s="sk_11"></button><span class="v" id="skv_11">+0</span><span>Обман</span><em>(Хар)</em></div><div class="sk"><button class="d" data-s="sk_12"></button><span class="v" id="skv_12">+0</span><span>Природа</span><em>(Инт)</em></div><div class="sk"><button class="d" data-s="sk_13"></button><span class="v" id="skv_13">+0</span><span>Проницательность</span><em>(Мдр)</em></div><div class="sk"><button class="d" data-s="sk_14"></button><span class="v" id="skv_14">+0</span><span>Религия</span><em>(Инт)</em></div><div class="sk"><button class="d" data-s="sk_15"></button><span class="v" id="skv_15">+0</span><span>Скрытность</span><em>(Лов)</em></div><div class="sk"><button class="d" data-s="sk_16"></button><span class="v" id="skv_16">+0</span><span>Убеждение</span><em>(Хар)</em></div><div class="sk"><button class="d" data-s="sk_17"></button><span class="v" id="skv_17">+0</span><span>Уход за животными</span><em>(Мдр)</em></div></div>
     <p class="hint">Нажми на ромб: владение → компетентность → нет.</p>
   </section>
 
   <section class="p">
     <h2>Атаки</h2>
-    <textarea data-k="atk" style="min-height:200px"></textarea>
+    <div class="at"><label>Название</label><label>Бонус атаки</label><label>Урон/вид</label><input data-k="at0n"><input type="text" data-k="at0b"><input data-k="at0d"><input data-k="at1n"><input type="text" data-k="at1b"><input data-k="at1d"><input data-k="at2n"><input type="text" data-k="at2b"><input data-k="at2d"><input data-k="at3n"><input type="text" data-k="at3b"><input data-k="at3d"></div>
+    <textarea data-k="atk" style="min-height:80px;margin-top:8px"></textarea>
   </section>
 
   <section class="p full">
@@ -223,37 +261,50 @@ body{background:radial-gradient(ellipse at 50% 0,var(--bgt) 0,var(--bg) 60%) fix
     <div class="cw"><div class="col"><div class="sl"><label>Лобная доля</label><textarea data-k="imp_0"></textarea></div><div class="sl"><label>Кровеносная система</label><textarea data-k="imp_2"></textarea></div><div class="sl"><label>Иммунная система</label><textarea data-k="imp_3"></textarea></div><div class="sl"><label>Нервная система</label><textarea data-k="imp_1"></textarea></div><div class="sl"><label>Кожа</label><textarea data-k="imp_4"></textarea></div></div><svg class="body" viewBox="0 0 120 300" aria-hidden="true"><defs>
 <linearGradient id="bgf" x1="0" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color:var(--red)" stop-opacity=".55"/><stop offset="1" style="stop-color:var(--redd)" stop-opacity=".25"/></linearGradient>
 <filter id="gl" filterUnits="userSpaceOnUse" x="-5" y="-5" width="130" height="310"><feGaussianBlur stdDeviation="1.6" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-<g id="bL"><path d="M34 128C32 150 33 176 37 196C38 206 37 214 38 226C39 242 42 258 43 270L41 281C38 285 34 287 33 292L51 292L53 281L53 270C54 254 55 240 55 226C55 214 54 206 55 196C57 176 59 158 60 143L40 128Z"/><path d="M56 44C50 47 43 48 37 51L33 56L33 70C34 84 36 98 37 110C36 118 34 126 34 133L60 143V44Z"/><path d="M30 53C23 55 20 62 19 72L16 98C15 108 13 122 12 136L8 148C6 154 7 160 8 166L13 167L16 160L18 168L22 167L23 158L26 160L28 150L29 138C30 124 32 112 33 98L34 76C34 66 33 58 30 53Z"/></g>
-<g id="dL"><path d="M60 68C52 74 42 72 37 66M60 84H52M60 96H52M60 108H53M57 49L40 53M40 198Q46 203 53 198M36 124Q48 134 60 138M21 100Q24 104 28 100"/></g>
-<path id="nvL" d="M60 56L40 62L26 72L19 100L11 142M60 136L50 192L45 264"/>
-<path id="rbL" d="M60 62Q48 66 42 62M60 70Q47 75 41 70M60 78Q47 84 41 78M60 86Q48 92 42 86M60 94Q50 99 44 94M58 54L42 52M60 138L44 130"/>
-<path id="arL" d="M32 60L22 100L14 138"/><ellipse id="pmL" cx="14" cy="154" rx="4.5" ry="7"/><path id="lgL" d="M45 142L41 200L45 264"/></defs>
-<g class="o" data-r="imp_4" fill="url(#bgf)" stroke-width="1.2" stroke-linejoin="round"><path d="M48 22C48 11 53 6 60 6S72 11 72 22C72 29 69 36 64 40L63 44H57L56 40C51 36 48 29 48 22Z"/><use href="#bL"/><use href="#bL" transform="matrix(-1 0 0 1 120 0)"/></g>
+<g id="bL"><path d="M35 142C32 160 33 184 37 204C38 212 37 216 36 226C35 238 38 254 41 270L40 284L33 290C31 292 32 294 36 294L50 294C54 294 54 290 52 284L52 270C54 252 56 236 55 220C55 212 55 208 56 198C58 178 59 164 60 152Z"/><path d="M55 46C50 49 43 50 37 53L35 62L35 76C35 90 38 102 39 112C38 124 35 132 35 142L60 152V46Z"/><path d="M36 52C29 53 25 59 24 68C23 78 22 92 20 106C19 114 18 124 17 134L17 148C15 154 14 160 14 166L15 176L18 177L19 169L21 179L24 179L25 169L27 177L29 176L28 164C28 158 26 154 25 148L26 126C27 118 29 112 30 106C32 94 34 84 35 72C36 64 36 58 36 52Z"/></g>
+<g id="dL"><path d="M60 74C52 79 43 77 38 71M60 90H53M60 102H54M60 114H54M57 50L41 55M41 209Q47 214 55 209M37 136Q49 146 60 148M21 108Q24 112 28 108"/></g>
+<path id="nvL" d="M60 62L42 66L30 76L24 106L18 148M60 146L52 200L47 280"/>
+<path id="rbL" d="M60 70Q47 75 40 70M60 78Q46 84 39 78M60 86Q47 92 40 86M60 94Q48 100 41 94M60 102Q49 107 43 102M58 56L42 54M60 148L42 138"/>
+<path id="arL" d="M33 60L25 100L19 146"/><ellipse id="pmL" cx="21" cy="164" rx="4.5" ry="8"/><path id="lgL" d="M46 150L42 206L45 270"/></defs>
+<g class="o" data-r="imp_4" fill="url(#bgf)" stroke-width="1.2" stroke-linejoin="round"><path d="M47.5 21C47.5 10 52.5 4 60 4S72.5 10 72.5 21C72.5 29 69 35 64.5 38L66 44L55 44L55.5 38C51 35 47.5 29 47.5 21Z"/><use href="#bL"/><use href="#bL" transform="matrix(-1 0 0 1 120 0)"/></g>
 <g class="dt"><use href="#dL"/><use href="#dL" transform="matrix(-1 0 0 1 120 0)"/></g>
-<ellipse data-r="imp_0" class="fl" cx="60" cy="14" rx="9" ry="5"/>
-<ellipse data-r="imp_9" class="fl" cx="60" cy="25" rx="10" ry="8"/><path data-r="imp_9" d="M60 18V32M52 23q4 3 8 0M60 28q4 2 8-1M54 29q3 2 6 1"/>
-<path data-r="imp_2" class="fl" d="M66 90C57 83 59 74 66 78C73 74 75 83 66 90Z"/><path data-r="imp_2" d="M66 75V56H60M66 90L62 132M70 88L76 128"/>
-<circle data-r="imp_3" class="fl" cx="60" cy="60" r="3"/><circle data-r="imp_3" class="fl" cx="44" cy="58" r="2.5"/><circle data-r="imp_3" class="fl" cx="76" cy="58" r="2.5"/><circle data-r="imp_3" class="fl" cx="77" cy="104" r="4"/>
-<path data-r="imp_1" d="M60 44V138"/><use href="#nvL" data-r="imp_1"/><use href="#nvL" data-r="imp_1" transform="matrix(-1 0 0 1 120 0)"/>
+<ellipse data-r="imp_0" class="fl" cx="60" cy="12" rx="8" ry="5"/>
+<ellipse data-r="imp_9" class="fl" cx="60" cy="22" rx="10" ry="8"/><path data-r="imp_9" d="M60 15V29M52 20q4 3 8 0M60 25q4 2 8-1M54 26q3 2 6 1"/>
+<path data-r="imp_2" class="fl" d="M66 98C57 91 59 82 66 86C73 82 75 91 66 98Z"/><path data-r="imp_2" d="M66 82V60H60M66 98L62 140M70 96L76 136"/>
+<circle data-r="imp_3" class="fl" cx="60" cy="64" r="3"/><circle data-r="imp_3" class="fl" cx="42" cy="66" r="2.5"/><circle data-r="imp_3" class="fl" cx="78" cy="66" r="2.5"/><circle data-r="imp_3" class="fl" cx="77" cy="112" r="4"/>
+<path data-r="imp_1" d="M60 46V146"/><use href="#nvL" data-r="imp_1"/><use href="#nvL" data-r="imp_1" transform="matrix(-1 0 0 1 120 0)"/>
 <use href="#rbL" data-r="imp_5"/><use href="#rbL" data-r="imp_5" transform="matrix(-1 0 0 1 120 0)"/>
 <use href="#arL" data-r="imp_6" stroke-width="2.4"/><use href="#arL" data-r="imp_6" stroke-width="2.4" transform="matrix(-1 0 0 1 120 0)"/>
 <use href="#pmL" data-r="imp_7" class="fl"/><use href="#pmL" data-r="imp_7" class="fl" transform="matrix(-1 0 0 1 120 0)"/>
 <use href="#lgL" data-r="imp_8" stroke-width="2.4"/><use href="#lgL" data-r="imp_8" stroke-width="2.4" transform="matrix(-1 0 0 1 120 0)"/></svg><div class="col"><div class="sl"><label>Операционная система</label><textarea data-k="imp_9"></textarea></div><div class="sl"><label>Скелет</label><textarea data-k="imp_5"></textarea></div><div class="sl"><label>Ладони</label><textarea data-k="imp_7"></textarea></div><div class="sl"><label>Руки</label><textarea data-k="imp_6"></textarea></div><div class="sl"><label>Ноги</label><textarea data-k="imp_8"></textarea></div></div></div>
+    <div id="ci" class="ci"></div>
+    <p class="hint">Описания подтягиваются автоматически из Cyberpunk Wiki по названию импланта. Название уходит на сайт вики.</p>
   </section>
 
   <section class="p">
     <h2>Снаряжение</h2>
+    <div class="coins"><div><label>ММ</label><input type="number" data-k="co_m"></div><div><label>СМ</label><input type="number" data-k="co_s"></div><div><label>ЭМ</label><input type="number" data-k="co_e"></div><div><label>ЗМ</label><input type="number" data-k="co_g"></div><div><label>ПМ</label><input type="number" data-k="co_p"></div></div>
     <textarea data-k="gear" style="min-height:160px"></textarea>
   </section>
 
   <section class="p">
-    <h2>Умения и черты</h2>
+    <h2>Умения и особенности</h2>
     <textarea data-k="feat" style="min-height:160px"></textarea>
   </section>
 
   <section class="p full">
-    <h2>Личность и заметки</h2>
-    <textarea data-k="notes" style="min-height:120px"></textarea>
+    <h2>Личность</h2>
+    <div class="f"><div><label>Черты характера</label><textarea data-k="tr" style="min-height:70px"></textarea></div><div><label>Идеалы</label><textarea data-k="id" style="min-height:70px"></textarea></div><div><label>Привязанности</label><textarea data-k="bn" style="min-height:70px"></textarea></div><div><label>Слабости</label><textarea data-k="fl" style="min-height:70px"></textarea></div><div class="w"><label>Заметки</label><textarea data-k="notes" style="min-height:90px"></textarea></div></div>
+  </section>
+
+  <section class="p">
+    <h2>Прочие владения и языки</h2>
+    <textarea data-k="prof" style="min-height:120px"></textarea>
+  </section>
+
+  <section class="p">
+    <h2>Внешность</h2>
+    <div class="f"><div><label>Возраст</label><input data-k="ap_age"></div><div><label>Высота</label><input data-k="ap_h"></div><div><label>Вес</label><input data-k="ap_w"></div><div><label>Глаза</label><input data-k="ap_eyes"></div><div><label>Кожа</label><input data-k="ap_skin"></div><div><label>Волосы</label><input data-k="ap_hair"></div></div>
   </section>
 
   <section class="p full">
@@ -268,7 +319,9 @@ body{background:radial-gradient(ellipse at 50% 0,var(--bgt) 0,var(--bg) 60%) fix
     <div id="mlock"><div class="mk"><input type="password" inputmode="numeric" id="mk" placeholder="Код мастера"><button class="b" id="mgo">Войти</button></div><span id="mst" class="hint"></span></div>
     <div id="mopen" hidden>
       <p class="hint" style="margin:0 0 8px">Здесь все персонажи, сохранённые в этом браузере, включая архив. Чтобы увидеть героя друга, добавь его по коду в блоке выше.</p>
-      <div class="tabs"><button class="b" id="mall">Коды всех персонажей</button><button class="b r" id="mlk">Закрыть меню</button></div>
+      <div class="mk" style="margin-bottom:8px"><input type="password" id="sk" placeholder="Пароль сервера"><button class="b" id="sgo">Загрузить игроков</button></div>
+      <p class="hint" id="sstat" style="margin:0 0 8px"></p><div id="sv"></div>
+      <div class="tabs" style="margin-top:12px"><button class="b" id="mall">Коды всех персонажей</button><button class="b r" id="mlk">Закрыть меню</button></div>
       <div id="ml"></div>
       <textarea id="mc" style="min-height:70px;margin-top:8px" placeholder="Здесь появится код выбранного персонажа"></textarea>
     </div>
@@ -293,12 +346,12 @@ if(!DB||!DB.list||!DB.list.length){
 }
 const cur=()=>DB.list.find(c=>c.id===DB.cur)||DB.list[0];
 S=cur().d;DB.cur=cur().id;
-function persist(){try{localStorage.setItem('cp-db',JSON.stringify(DB))}catch(e){}}
+function persist(){try{localStorage.setItem('cp-db',JSON.stringify(DB))}catch(e){}queueSync()}
 
 
 function load(){
   document.querySelectorAll('[data-k]').forEach(e=>{e.value=S[e.dataset.k]??e.defaultValue});
-  showPhoto();
+  theme();showPhoto();
   recalc();
 }
 function showPhoto(){
@@ -308,7 +361,12 @@ function showPhoto(){
 }
 function recalc(){
   renderList();renderMaster();
+  const hpv=String(S.hp??'').trim();
+  document.documentElement.classList.toggle('dead',hpv!==''&&(+hpv)<=0);$('#dn').textContent=S.name||'';
+  for(let i=0;i<3;i++){paint('ds_'+i,+S['ds_'+i]||0);paint('df_'+i,+S['df_'+i]||0)}
   document.querySelectorAll('[data-r]').forEach(e=>e.classList.toggle('lit',!!String(S[e.dataset.r]||'').trim()));
+  document.querySelectorAll('textarea[data-k^=imp_]').forEach(e=>e.classList.toggle('on',!!e.value.trim()));
+  renderImp();
   const XP=[0,300,900,2700,6500,14000,23000,34000,48000,64000,85000,100000,120000,140000,165000,195000,225000,265000,305000,355000];
   const xp=Math.max(0,+S.xp||0);let lvl=1;XP.forEach((t,i)=>{if(xp>=t)lvl=i+1});
   $('#lvd').textContent=lvl;
@@ -330,12 +388,12 @@ function recalc(){
 function paint(key,p){
   const b=document.querySelector(`[data-s="${key}"]`);if(!b)return;
   b.classList.toggle('s1',p===1);b.classList.toggle('s2',p===2);
-  if(key.startsWith('sv_')){b.style.background=p?'var(--cyan)':'none'}
+  if(/^(sv|ds|df)_/.test(key)){b.style.background=p?(key[1]==='f'?'var(--red)':'var(--cyan)'):'none'}
 }
-document.addEventListener('input',e=>{const k=e.target.dataset&&e.target.dataset.k;if(k){S[k]=e.target.value;persist();recalc()}});
+document.addEventListener('input',e=>{const k=e.target.dataset&&e.target.dataset.k;if(k){if(bad(e.target.value)){e.target.value=S[k]??e.target.defaultValue;warn();return}S[k]=e.target.value;persist();recalc()}});
 document.addEventListener('click',e=>{
   const s=e.target.closest('[data-s]');if(!s)return;
-  const k=s.dataset.s,max=k.startsWith('sv_')?2:3;
+  const k=s.dataset.s,max=/^(sv|ds|df)_/.test(k)?2:3;
   S[k]=((+S[k]||0)+1)%max;persist();recalc();
 });
 const TR={а:'a',б:'b',в:'v',г:'g',д:'d',е:'e',ё:'e',ж:'zh',з:'z',и:'i',й:'y',к:'k',л:'l',м:'m',н:'n',о:'o',п:'p',р:'r',с:'s',т:'t',у:'u',ф:'f',х:'kh',ц:'ts',ч:'ch',ш:'sh',щ:'sch',ъ:'',ы:'y',ь:'',э:'e',ю:'yu',я:'ya'};
@@ -343,7 +401,7 @@ const lat=s=>[...s.toLowerCase()].map(c=>TR[c]??c).join('').replace(/[^a-z0-9]+/
 const hs=p=>{let h=5381;for(const c of p)h=((h*33)^c.charCodeAt(0))>>>0;return String(h%100000).padStart(5,'0')};
 const pipe=async(x,T)=>new Uint8Array(await new Response(new Blob([x]).stream().pipeThrough(new T('deflate'))).arrayBuffer());
 async function encode(d){
-  const c={...d};delete c.photo;const j=JSON.stringify(c);
+  const c={...d,_th:d._th||ST};delete c.photo;const j=JSON.stringify(c);
   let b,m='r';
   try{b=await pipe(j,CompressionStream);m='z'}catch(e){b=new TextEncoder().encode(j)}
   let s='';b.forEach(x=>s+=String.fromCharCode(x));
@@ -363,7 +421,7 @@ const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',
 let pend=0;
 function flash(t,ms=1800){$('#st').textContent=t;setTimeout(()=>$('#st').textContent='',ms)}
 function go(id){DB.cur=id;S=cur().d;persist()}
-function add(d){const id=Date.now();DB.list.push({id,d,arch:0});tab=0;go(id)}
+function add(d,x){const id=Date.now();DB.list.push({id,d,arch:0,...x});tab=0;go(id)}
 function fix(){const c=DB.list.find(x=>!x.arch);c?go(c.id):add({})}
 function renderList(){
   const L=DB.list.filter(c=>!!c.arch===!!tab);
@@ -375,7 +433,9 @@ document.addEventListener('click',e=>{
   const a=b.dataset.act,id=+b.dataset.id;
   if(a==='tab0'||a==='tab1')tab=+a[3];
   else if(a==='new')add({});
-  else if(a==='save'){persist();flash('Сохранено ✓')}
+  else if(a==='save'){persist();syncAll();flash('Сохранено ✓')}
+  else if(a==='srv')openSrv(+b.dataset.i)
+  else if(a==='wk')lookup(String(S['imp_'+b.dataset.i]||'').trim())
   else if(a==='code'){encode(DB.list.find(x=>x.id===id).d).then(t=>{$('#mc').value=t;$('#mc').select();try{navigator.clipboard.writeText(t)}catch(e){}})}
   else if(a==='open'){go(id);scrollTo({top:0,behavior:'smooth'})}
   else if(a==='arch'){const c=DB.list.find(x=>x.id===id);c.arch=c.arch?0:1;if(c.arch&&id===DB.cur)fix();persist()}
@@ -386,34 +446,39 @@ document.addEventListener('click',e=>{
   load();
 });
 $('#ex').onclick=async()=>{const t=await encode(S);$('#io').value=t;$('#io').select();try{navigator.clipboard.writeText(t)}catch(e){}flash('Код готов ✓')};
-$('#im').onclick=async()=>{try{const o=await decode($('#io').value);if(!o||typeof o!=='object')throw 0;delete o.photo;add(o);load();$('#io').value='';flash('Персонаж добавлен ✓')}catch(e){flash('Код не читается — скопируй его целиком',3500)}};
+$('#im').onclick=async()=>{try{const o=await decode($('#io').value);if(!o||typeof o!=='object')throw 0;delete o.photo;for(const k in o)if(typeof o[k]==='string'&&bad(o[k]))o[k]='';add(o,{srv:'code'});load();$('#io').value='';flash('Персонаж добавлен ✓')}catch(e){flash('Код не читается — скопируй его целиком',3500)}};
 const PAL={'Киберпанк':['#ff4d4d','#4fe3ff','#fcee0a'],'Неон':['#ff2bd6','#2bf0ff','#b8ff2b'],'Токсик':['#39ff88','#2bd9ff','#f4ff3a'],'Лёд':['#5aa9ff','#e6f4ff','#9be7ff'],'Золото':['#ffb42b','#ff6a3d','#fff0a0']};
 const OPT={scan:'Линии монитора',bar:'Бегущая световая полоса',flick:'Мерцание заголовка',rise:'Плавное появление блоков',vg:'Свечение по краям экрана'};
 const DEF={p:'#ff4d4d',s:'#4fe3ff',t:'#fcee0a',k:100,o:{scan:1,bar:1,flick:1,rise:1,vg:1}};
 let ST={...DEF};
 try{Object.assign(ST,JSON.parse(localStorage.getItem('cp-set')||'{}'))}catch(e){}
 ST.o={...DEF.o,...ST.o};
+const hx=v=>/^#[0-9a-f]{6}$/i.test(v);
+const TH=()=>{const c=cur(),t=c&&c.srv&&c.d._th;if(!t||typeof t!=='object')return ST;
+  return{p:hx(t.p)?t.p:ST.p,s:hx(t.s)?t.s:ST.s,t:hx(t.t)?t.t:ST.t,k:Math.max(0,Math.min(150,isFinite(+t.k)?+t.k:100)),o:{...DEF.o,...(t.o&&typeof t.o==='object'?t.o:{})}}};
 const rgb=h=>[1,3,5].map(i=>parseInt(h.slice(i,i+2),16));
 function glow(){
-  const r=document.documentElement,hr=1-(window.HP??100)/100,sr=rgb(ST.s),D=[255,40,60];
+  const T=TH();
+  const r=document.documentElement,hr=1-(window.HP??100)/100,sr=rgb(T.s),D=[255,40,60];
   r.style.setProperty('--hr',hr);
   r.style.setProperty('--gl',sr.map((x,i)=>(x+(D[i]-x)*Math.min(1,hr*1.4))|0));
-  r.style.setProperty('--gi',(.1+hr*.6)*ST.k/100);
+  r.style.setProperty('--gi',(.1+hr*.6)*T.k/100);
   r.classList.toggle('crit',hr>=.75);
 }
 function theme(){
-  const r=document.documentElement,pr=rgb(ST.p);
-  r.style.setProperty('--red',ST.p);r.style.setProperty('--cyan',ST.s);r.style.setProperty('--yel',ST.t);
+  const T=TH();
+  const r=document.documentElement,pr=rgb(T.p);
+  r.style.setProperty('--red',T.p);r.style.setProperty('--cyan',T.s);r.style.setProperty('--yel',T.t);
   r.style.setProperty('--redd','rgb('+pr.map(x=>x*.5|0)+')');
-  r.style.setProperty('--pr',pr);r.style.setProperty('--sr',rgb(ST.s));
+  r.style.setProperty('--pr',pr);r.style.setProperty('--sr',rgb(T.s));
   r.style.setProperty('--bgt','rgb('+pr.map((x,i)=>[11,7,16][i]*.84+x*.16|0)+')');
-  r.style.setProperty('--k',ST.k/100);
-  Object.keys(OPT).forEach(n=>r.classList.toggle('no-'+n,!ST.o[n]));
+  r.style.setProperty('--k',T.k/100);
+  Object.keys(OPT).forEach(n=>r.classList.toggle('no-'+n,!T.o[n]));
   glow();
 }
 $('#set').innerHTML=`<h2 style="margin:0;font-size:13px;letter-spacing:.2em;color:var(--red)">НАСТРОЙКИ АНКЕТЫ</h2><label>Палитра</label><div class="pal">${Object.keys(PAL).map(n=>`<button class="b" data-pal="${n}">${n}</button>`).join('')}</div><label>Основной цвет</label><input type="color" id="c1"><label>Второй цвет (импланты, поля)</label><input type="color" id="c2"><label>Акцент (числа)</label><input type="color" id="c3"><label>Сила свечения <b id="kv"></b></label><input type="range" id="kr" min="0" max="150" step="5"><label>Эффекты</label>${Object.entries(OPT).map(([k,v])=>`<label class="row"><input type="checkbox" data-o="${k}"> ${v}</label>`).join('')}<button class="b" id="rs" style="margin-top:12px">Сбросить настройки</button>`;
 function syncUI(){$('#c1').value=ST.p;$('#c2').value=ST.s;$('#c3').value=ST.t;$('#kr').value=ST.k;$('#kv').textContent=ST.k+'%';document.querySelectorAll('[data-o]').forEach(e=>e.checked=!!ST.o[e.dataset.o])}
-function applyST(){theme();try{localStorage.setItem('cp-set',JSON.stringify(ST))}catch(e){}}
+function applyST(){theme();queueSync();try{localStorage.setItem('cp-set',JSON.stringify(ST))}catch(e){}}
 $('#gear').onclick=()=>{$('#set').hidden=!$('#set').hidden};
 $('#set').addEventListener('input',e=>{const t=e.target;
   if(t.id==='c1')ST.p=t.value;else if(t.id==='c2')ST.s=t.value;else if(t.id==='c3')ST.t=t.value;
@@ -431,7 +496,7 @@ function renderMaster(){
   if(!MU)return;
   $('#ml').innerHTML=[...DB.list].sort((a,b)=>a.arch-b.arch).map(c=>{
     const d=c.d,hm=+d.humm||100,h=Math.min(hm,d.hum===undefined||d.hum===''?hm:(+d.hum||0));
-    return `<div class="rw${c.id===DB.cur?' on':''}"><div class="nm">${esc(d.name||'Без имени')}${c.arch?' <em>[АРХИВ]</em>':''}<small>${esc([d.cls,d.race].filter(Boolean).join(' · '))} · ур. ${lvOf(d)} · человечность ${h}/${hm}</small></div><button class="b" data-act="open" data-id="${c.id}">Открыть</button><button class="b" data-act="code" data-id="${c.id}">Код</button><button class="b" data-act="arch" data-id="${c.id}">${c.arch?'Вернуть':'В архив'}</button><button class="b r" data-act="del" data-id="${c.id}">${pend===c.id?'Точно?':'Удалить'}</button></div>`}).join('');
+    return `<div class="rw${c.id===DB.cur?' on':''}"><div class="nm">${esc(d.name||'Без имени')}${c.arch?' <em>[АРХИВ]</em>':''}${c.srv?' <em>[КОПИЯ]</em>':''}<small>${esc([d.cls,d.race].filter(Boolean).join(' · '))} · ур. ${lvOf(d)} · человечность ${h}/${hm}</small></div><button class="b" data-act="open" data-id="${c.id}">Открыть</button><button class="b" data-act="code" data-id="${c.id}">Код</button><button class="b" data-act="arch" data-id="${c.id}">${c.arch?'Вернуть':'В архив'}</button><button class="b r" data-act="del" data-id="${c.id}">${pend===c.id?'Точно?':'Удалить'}</button></div>`}).join('');
 }
 function mUnlock(){
   if($('#mk').value.trim()==='1441'){MU=1;$('#mk').value='';$('#mlock').hidden=true;$('#mopen').hidden=false;renderMaster()}
@@ -441,6 +506,84 @@ $('#mgo').onclick=mUnlock;
 $('#mk').onkeydown=e=>{if(e.key==='Enter')mUnlock()};
 $('#mlk').onclick=()=>{MU=0;$('#mlock').hidden=false;$('#mopen').hidden=true};
 $('#mall').onclick=async()=>{const t=(await Promise.all(DB.list.map(c=>encode(c.d)))).join('\n');$('#mc').value=t;$('#mc').select();try{navigator.clipboard.writeText(t)}catch(e){}};
+const LB=['Лобная доля','Нервная система','Кровеносная система','Иммунная система','Кожа','Скелет','Руки','Ладони','Ноги','Операционная система'];
+let WK={},FILLED=new Set();const WT={};
+try{WK=JSON.parse(localStorage.getItem('cp-wk')||'{}')}catch(e){}
+async function wk(q){
+  q=q.split('\n')[0].slice(0,60);
+  for(const L of ['/ru','']){try{
+    const B='https://cyberpunk.fandom.com'+L+'/api.php?origin=*&format=json&action=query&';
+    const r=await (await fetch(B+'list=search&srlimit=1&srsearch='+encodeURIComponent(q))).json(),h=r.query.search[0];
+    if(!h)continue;
+    let x='';
+    try{const e=await (await fetch(B+'prop=extracts&exintro=1&explaintext=1&redirects=1&exchars=420&titles='+encodeURIComponent(h.title))).json();x=(Object.values(e.query.pages)[0].extract||'').trim()}catch(e){}
+    if(!x)x=h.snippet.replace(/<[^>]+>/g,'').replace(/&quot;/g,'"').replace(/&amp;/g,'&').replace(/&#039;/g,"'");
+    return{t:h.title,x,u:'https://cyberpunk.fandom.com'+L+'/wiki/'+encodeURIComponent(h.title.replace(/ /g,'_'))};
+  }catch(e){}}
+  return null;
+}
+async function lookup(t){
+  const k=t.toLowerCase();WK[k]='…';renderImp();
+  const r=await wk(t);
+  WK[k]=r||'—';
+  try{localStorage.setItem('cp-wk',JSON.stringify(Object.fromEntries(Object.entries(WK).filter(([,v])=>typeof v==='object'))))}catch(e){}
+  renderImp();
+}
+function renderImp(){
+  let h='';const now=new Set();
+  LB.forEach((n,i)=>{
+    const t=String(S['imp_'+i]||'').trim();if(!t)return;
+    const k=t.toLowerCase(),w=WK[k];now.add(i);
+    if(w===undefined&&t.length>=3){clearTimeout(WT[i]);WT[i]=setTimeout(()=>{if(WK[k]===undefined)lookup(t)},900)}
+    h+=`<div class="ic${FILLED.has(i)?'':' new'}"><b>${esc(n)}</b> · ${esc(t.split('\n')[0])}${t.length<3?'':w===undefined||w==='…'?'<p class="hint">Ищу описание в вики…</p>':w==='—'?`<p class="hint">В вики ничего не нашлось или она недоступна. <button class="b" data-act="wk" data-i="${i}">Повторить</button></p>`:`<p>${esc(w.x)}</p><p class="hint">Cyberpunk Wiki: <a href="${esc(w.u)}" target="_blank" rel="noopener">${esc(w.t)}</a> (CC BY-SA)</p>`}</div>`;
+  });
+  FILLED=now;
+  $('#ci').innerHTML=h||'<p class="hint">Впиши имплант в любую часть тела, и здесь появится описание из Cyberpunk Wiki.</p>';
+}
+const BAD=[/[\w.+-]+@[\w-]+\.[\w.-]+/i,/(^|\s)@\w{3,}/,/https?:\/\/|www\.|t\.me|\S\.(com|ru|org|net|io|me|ua|by|su|рф)(?![a-zа-яё])/i,/(^|[\s,])(ул\.|улица|проспект|пр-т|переулок|шоссе|бульвар|набережная|площадь)\s+[А-Яа-яЁё.\- ]{1,30}?[, ]+\s*(д\.?|дом)?\s*\d/i,/(^|[\s,])(кв\.?|квартира|корп\.?|корпус|д\.|дом)\s*\d/i,/\b\d+\s+[A-Za-z]+\s+(street|st|avenue|ave|road|rd)\b/i];
+const bad=v=>{v=String(v);return BAD.some(r=>r.test(v))||(v.match(/\+?\d[\d\s().-]{8,}\d/g)||[]).some(m=>m.replace(/\D/g,'').length>=10)};
+let tt=0;
+function warn(){const t=$('#toast');t.textContent='🔒 Нельзя вводить личные данные: телефон, почту, ссылки, адрес и номера документов. Придумай данные для персонажа.';t.classList.add('on');clearTimeout(tt);tt=setTimeout(()=>t.classList.remove('on'),4500)}
+const API="https://script.google.com/macros/s/AKfycbwEzy_RutW38gKFDBtPBtPGowmR29b7iuAaQt_nHdV-XlyMMUnHoewDRMYe0nn-_xxB/exec";
+let PID='';
+try{PID=localStorage.getItem('cp-pid')||'';if(!PID){PID=Math.random().toString(36).slice(2,10);localStorage.setItem('cp-pid',PID)}}catch(e){PID=Math.random().toString(36).slice(2,10)}
+const SENT={};let sy=0,SV=[];
+function queueSync(){clearTimeout(sy);sy=setTimeout(syncAll,2500)}
+async function syncAll(){
+  for(const c of DB.list){
+    if(c.srv||!(c.d.name||'').trim())continue;
+    const d={...c.d,_th:ST};delete d.photo;const j=JSON.stringify(d);
+    if(Object.values(d).some(v=>typeof v==='string'&&bad(v))){$('#sync').textContent='Лист не отправлен: в нём есть личные данные';continue}
+    if(SENT[c.id]===j)continue;
+    try{
+      await fetch(API,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain'},body:JSON.stringify({id:PID+'-'+c.id,name:d.name,data:d})});
+      SENT[c.id]=j;$('#sync').textContent='Отправлено мастеру ✓';
+    }catch(e){$('#sync').textContent='Не удалось отправить мастеру: нет связи с Google'}
+  }
+}
+const inf=d=>{const hm=+d.humm||100,h=Math.min(hm,d.hum===undefined||d.hum===''?hm:(+d.hum||0));return 'ур. '+lvOf(d)+' · человечность '+h+'/'+hm};
+function renderSrv(){
+  SV.sort((a,b)=>new Date(b.t)-new Date(a.t));
+  $('#sv').innerHTML=SV.map((c,i)=>{const d=c.data||{};return `<div class="rw"><div class="nm">${esc(c.name||'Без имени')}<small>${esc([d.cls,d.race].filter(Boolean).join(' · '))} · ${inf(d)} · ${esc(new Date(c.t).toLocaleString('ru'))}</small></div><button class="b" data-act="srv" data-i="${i}">Открыть</button></div>`}).join('');
+}
+function openSrv(i){
+  const c=SV[i],d={...c.data};delete d.photo;
+  const x=DB.list.find(y=>y.srv===c.id);
+  if(x){x.d=d;go(x.id)}else add(d,{srv:c.id});
+  scrollTo({top:0,behavior:'smooth'});
+}
+try{$('#sk').value=localStorage.getItem('cp-sk')||''}catch(e){}
+$('#sgo').onclick=async()=>{
+  const k=$('#sk').value.trim(),st=$('#sstat');st.textContent='Загрузка…';
+  try{
+    SV=await (await fetch(API+'?key='+encodeURIComponent(k))).json();
+    if(!Array.isArray(SV))throw 0;
+    st.textContent=SV.length?'Игроков на сервере: '+SV.length:'Пусто или неверный пароль';
+    if(SV.length)try{localStorage.setItem('cp-sk',k)}catch(e){}
+    renderSrv();
+  }catch(e){st.textContent='Нет связи с сервером. Проверь доступ «Все» у веб-приложения.'}
+};
+queueSync();
 document.querySelectorAll('.grid>.p').forEach((p,i)=>p.style.animationDelay=i*.06+'s');
 $('#ph').onchange=e=>{
   const f=e.target.files[0];if(!f)return;
